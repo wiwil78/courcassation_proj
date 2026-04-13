@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Procédure devant la Cour de Cassation d’Haïti{% endblock %}
+
+{% block content %}
+
+<!-- HERO / BANNER -->
+<section class="position-relative text-center text-white"
+    style="background: linear-gradient(rgba(10,26,60,0.7), rgba(10,26,60,0.7)),
+           url('{% static 'images/batiment223.jpg' %}') center/cover no-repeat; height: 50vh;">
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 px-3">
+        <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+            Procédure devant la Cour de Cassation
+        </h1>
+        <p class="lead mt-3 animate__animated animate__fadeInUp" style="max-width: 800px;">
+            La Cour de Cassation assure le contrôle de la légalité des décisions rendues
+            par les juridictions inférieures, conformément au décret du 22 août 1995
+            relatif à l’organisation judiciaire.
+        </p>
+    </div>
+</section>
+
+<!-- CONTENU PRINCIPAL -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- INTRODUCTION JURIDIQUE -->
+            <div class="col-12">
+                <div class="card p-4 shadow-sm rounded-4">
+                    <h3 class="fw-bold mb-3">Rôle de la Cour de Cassation</h3>
+                    <p class="text-muted">
+                        Conformément au décret du 22 août 1995, la Cour de Cassation est la
+                        plus haute juridiction de l’ordre judiciaire haïtien.
+                        Elle ne connaît pas des faits, mais vér élimite si la loi a été
+                        correctement appliquée par les juridictions inférieures.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ÉTAPES DE LA PROCÉDURE -->
+            <div class="col-12">
+                <div class="card p-4 shadow-sm rounded-4 mt-4">
+                    <h3 class="fw-bold mb-3">Étapes de la Procédure</h3>
+
+                    <h5 class="fw-semibold mt-3">1. Formation du pourvoi en cassation</h5>
+                    <p class="text-muted">
+                        Le pourvoi est formé par déclaration au greffe de la juridiction
+                        ayant rendu la décision attaquée, dans les délais légaux.
+                        Il doit être signé par un avocat.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">2. Transmission du dossier</h5>
+                    <p class="text-muted">
+                        Le greffe transmet le dossier complet à la Cour de Cassation,
+                        incluant la décision attaquée et les pièces de la procédure.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">3. Instruction et contrôle de recevabilité</h5>
+                    <p class="text-muted">
+                        La Cour vérifie la régularité formelle du pourvoi :
+                        délais, qualité pour agir, respect des formes légales.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">4. Examen juridique</h5>
+                    <p class="text-muted">
+                        Les juges examinent uniquement les moyens de droit :
+                        violation de la loi, incompétence, excès de pouvoir,
+                        ou vice de procédure.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">5. Délibéré et arrêt</h5>
+                    <p class="text-muted">
+                        La Cour rend un arrêt soit de rejet, soit de cassation.
+                        En cas de cassation, l’affaire peut être renvoyée
+                        devant une autre juridiction du même degré.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">6. Prononcé et publication</h5>
+                    <p class="text-muted">
+                        L’arrêt est prononcé en audience publique,
+                        consigné au greffe et publié conformément aux règles en vigueur.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARTES SYNTHÈSE -->
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-journal-text text-primary fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Pourvoi en cassation</h5>
+                    <p class="text-muted">
+                        Acte juridique par lequel une partie saisit la Cour
+                        pour contrôler la légalité d’une décision.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-shield-check text-success fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Contrôle de la loi</h5>
+                    <p class="text-muted">
+                        La Cour ne juge pas les faits, mais la correcte
+                        application des règles de droit.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-file-earmark-lock text-warning fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Arrêt définitif</h5>
+                    <p class="text-muted">
+                        L’arrêt de la Cour de Cassation s’impose
+                        aux juridictions inférieures.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

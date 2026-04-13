@@ -1,0 +1,505 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accueil — Cour de Cassation d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== HERO (drapo kap flote) ===== */
+.hero-section {
+    position: relative;
+    height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: wave 3s infinite ease-in-out;
+}
+@keyframes wave {
+    0% { background-position: center 0; }
+    50% { background-position: center 20px; }
+    100% { background-position: center 0; }
+}
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,38,84,0.65), rgba(237,41,57,0.65));
+}
+.hero-text {
+    position: relative; z-index:2;
+    top: 48%; transform: translateY(-48%);
+    color: #fff; text-align:center;
+}
+.hero-text h1 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+#typing-title {
+    border-right: 3px solid rgba(255,255,255,0.9);
+    padding-right: 6px;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%   { border-color: transparent; }
+    50%  { border-color: rgba(255,255,255,0.9); }
+    100% { border-color: transparent; }
+}
+
+
+/* ===== GENERAL ===== */
+.section-title {
+    text-align: left;
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    color: #002654;
+    border-left: 6px solid #ED2939;
+    padding-left: 12px;
+}
+.section-sub {
+    color: #002654; font-weight:700; margin-bottom:12px;
+}
+
+/* ===== MOT DU PRÉSIDENT ===== */
+.president-wrap {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), #fff);
+    padding: 26px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.presi-photo-frame {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 8px;
+    background: #fff;
+    border-radius: 10px;
+    border: 4px solid #efeef2ff; /* doré */
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+.presi-photo-frame img {
+    display:block;
+    width:100%;
+    height:380px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+/* Mot text styling */
+.mot-box {
+    background: rgba(0,0,0,0.03);
+    border-radius:10px;
+    padding:22px;
+}
+.mot-box p {
+    font-size:1.05rem;
+    line-height:1.75;
+    color:#0b1b37;
+    margin-bottom:1rem;
+}
+.mot-quote {
+    font-style: italic;
+    font-size:1.06rem;
+    color:#002654;
+}
+
+/* signature */
+.presi-sign {
+    margin-top:16px;
+    font-weight:700;
+    color:#002654;
+}
+
+/* ===== ROLE & MISSION CARDS ===== */
+.mission-grid .card {
+    border-radius:12px;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.mission-grid .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.12);
+}
+.mission-icon {
+    font-size: 34px; color:#D21034; margin-bottom:10px;
+}
+
+/* ===== TEXTES DE LOI ===== */
+.law-list .list-group-item {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    font-size:1rem;
+}
+
+/* ===== HISTORIQUE ===== */
+.history-block {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+    .hero-text h1 { font-size: 2rem; }
+    .presi-photo-frame img { height: 260px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text container">
+        <h1>
+            <span id="typing-title"></span>
+        </h1>
+
+        <p class="lead mt-2" style="color:rgba(255,255,255,0.95)">
+          <!--  La plus haute instance de la justice — gardienne de l’État de droit-->
+        </p>
+    </div>
+    <script>
+const titleText = "Cour de Cassation de la République d’Haïti";
+let index = 0;
+const speed = 80;
+
+const typingElement = document.getElementById("typing-title");
+
+function typeTitle() {
+    if (index < titleText.length) {
+        typingElement.textContent += titleText.charAt(index);
+        index++;
+        setTimeout(typeTitle, speed);
+    } else {
+        // Supprimer le curseur après la frappe
+        typingElement.style.borderRight = "none";
+    }
+}
+
+window.addEventListener("load", typeTitle);
+</script>
+
+
+</section>
+
+
+
+<!-- MOT DU PRÉSIDENT -->
+<section class="py-5">
+    <div class="container">
+        <div class="president-wrap row g-4 align-items-center">
+
+            <div class="col-lg-4 text-center">
+                <div class="presi-photo-frame">
+                    <img src="{% static 'images/lebrun12.png' %}" alt="Photo du Président">
+                </div>
+                <h5 class="mt-3 fw-bold">Jean Joseph Lebrun</h5>
+                <p class="mb-0">Président de la Cour de Cassation</p>
+                <p class="fst-italic" style="font-size:0.93rem; color:#555">En fonction depuis : novembre 2022</p>
+            </div>
+
+            <div class="col-lg-8">
+                <h2 class="section-title">Mot du Président</h2>
+
+                <div class="mot-box">
+                    <p class="mot-quote">
+                        « La justice n’est pas seulement une institution — elle est le souffle même
+                        de la nation. En protégeant les droits et en faisant respecter la loi,
+                        nous garantissons l’avenir de notre peuple. »
+                    </p>
+
+                    <p>
+                        Chers concitoyens, la Cour de Cassation poursuit sa mission avec
+                        détermination et intégrité. Notre priorité est la transparence
+                        dans la publication des décisions, l’accès équitable à l’information judiciaire,
+                        et la modernisation des procédures afin de servir tous ceux qui recherchent la justice.
+                    </p>
+
+                    <p>
+                        Nous appelons chaque acteur du système judiciaire — magistrats, avocats et citoyens —
+                        à participer à la construction d’une justice digne, indépendante et respectée.
+                    </p>
+
+                    <p class="presi-sign">— Jean Joseph Lebrun, Président</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ================== RÔLE & MISSION ================== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Rôle et Mission de la Cour de Cassation</h2>
+        <div class="mb-3" style="width:90px; height:6px; background: linear-gradient(90deg,#002654,#ED2939);"></div>
+
+        <div class="row mission-grid g-4">
+
+            <!-- ===== MISSION 1 ===== -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4">
+                    <div class="mission-icon">⚖️</div>
+                    <h5 class="fw-bold">Garantir l’application uniforme de la loi</h5>
+
+                    <p>
+                        La Cour de Cassation veille à ce que la loi soit appliquée de manière
+                        uniforme par toutes les juridictions de la République.
+                    </p>
+
+                    <a class="btn btn-link p-0"
+                       data-bs-toggle="collapse"
+                       href="#missionUniformite"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="missionUniformite">
+                        Lire plus
+                    </a>
+
+                    <div class="collapse mt-2" id="missionUniformite">
+                        <ul class="mb-0">
+                            <li>Elle ne rejuge pas les faits, mais contrôle l’application du droit.</li>
+                            <li>Elle corrige les erreurs d’interprétation de la loi.</li>
+                            <li>Elle évite les décisions contradictoires entre juridictions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MISSION 2 ===== -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4">
+                    <div class="mission-icon">⚖️</div>
+                    <h5 class="fw-bold">Contrôler la légalité des décisions judiciaires</h5>
+
+                    <p>
+                        Elle assure le respect de la Constitution et des lois dans
+                        l’ensemble des décisions rendues par les tribunaux.
+                    </p>
+
+                    <a class="btn btn-link p-0"
+                       data-bs-toggle="collapse"
+                       href="#missionLegalite"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="missionLegalite">
+                        Lire plus
+                    </a>
+
+                    <div class="collapse mt-2" id="missionLegalite">
+                        <ul class="mb-0">
+                            <li>Elle sanctionne toute violation ou mauvaise application de la loi.</li>
+                            <li>Elle peut casser une décision entachée d’erreur de droit.</li>
+                            <li>Elle protège les droits fondamentaux et la sécurité juridique.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MISSION 3 ===== -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4">
+                    <div class="mission-icon">⚖️</div>
+                    <h5 class="fw-bold">Interpréter et clarifier le droit</h5>
+
+                    <p>
+                        Par ses arrêts, la Cour oriente l’interprétation et
+                        l’évolution du droit haïtien.
+                    </p>
+
+                    <a class="btn btn-link p-0"
+                       data-bs-toggle="collapse"
+                       href="#missionInterpretation"
+                       role="button"
+                       aria-expanded="false"
+                       aria-controls="missionInterpretation">
+                        Lire plus
+                    </a>
+
+                    <div class="collapse mt-2" id="missionInterpretation">
+                        <ul class="mb-0">
+                            <li>Ses décisions ont une valeur jurisprudentielle.</li>
+                            <li>Elles assurent l’unité et la cohérence du système judiciaire.</li>
+                            <li>Elles servent de référence aux juges, avocats et législateurs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-4 text-muted">
+            <small>
+                Référence juridique :
+                <strong>Décret du 22 août 1995</strong> portant organisation judiciaire
+                et compétences de la Cour de Cassation.
+            </small>
+        </div>
+    </div>
+</section>
+
+<!-- pour actualites -->
+
+
+<!-- NOTICE HISTORIQUE -->
+<!-- ================== CAROUSEL : COMPOSITION / ATTRIBUTIONS / SIÈGE ================== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Faire connaissance avec la Cour de Cassation</h2>
+        <div class="mb-3" style="width:90px; height:6px; background: linear-gradient(90deg,#ED2939,#002654);"></div>
+
+        <div id="courCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+            <div class="carousel-inner">
+
+                <!-- ================= COMPOSITION ================= -->
+                <div class="carousel-item active">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-5">
+                            <div class="carousel-img-wrap">
+                                <img src="{% static 'images/cassation2.png' %}" alt="Composition de la Cour de Cassation">
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3 class="fw-bold">Composition</h3>
+                            <p>
+                                La Cour de Cassation est composée d’un Président,
+                                d’un Vice-Président et de dix Juges.
+                            </p>
+
+                            <!-- VOIR PLUS -->
+                            <button class="btn btn-link p-0"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#compositionPlus">
+                                Voir plus
+                            </button>
+
+                            <div class="collapse mt-3" id="compositionPlus">
+                                <p>
+                                    Tous les juges sont nommés conformément à la Constitution
+                                    et bénéficient de l’inamovibilité afin de garantir
+                                    l’indépendance de la justice et la stabilité institutionnelle.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= ATTRIBUTIONS ================= -->
+                <div class="carousel-item">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-5">
+                            <div class="carousel-img-wrap">
+                                <img src="{% static 'images/cassation2.png' %}" alt="Attributions de la Cour de Cassation">
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3 class="fw-bold">Attributions</h3>
+                            <p>
+                                Elle contrôle la légalité des décisions judiciaires
+                                rendues par les tribunaux.
+                            </p>
+
+                            <!-- VOIR PLUS -->
+                            <button class="btn btn-link p-0"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#attributionsPlus">
+                                Voir plus
+                            </button>
+
+                            <div class="collapse mt-3" id="attributionsPlus">
+                                <ul>
+                                    <li>Elle casse les décisions entachées d’erreur de droit</li>
+                                    <li>Elle assure l’unité de la jurisprudence</li>
+                                    <li>Elle protège la sécurité juridique</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SIÈGE ================= -->
+                <div class="carousel-item">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-5">
+                            <div class="carousel-img-wrap">
+                                <img src="{% static 'images/cassation2.png' %}" alt="Siège de la Cour de Cassation">
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3 class="fw-bold">Siège</h3>
+                            <p>
+                                Le siège de la Cour est situé au Champ-de-Mars,
+                                à Port-au-Prince.
+                            </p>
+
+                            <!-- VOIR PLUS -->
+                            <button class="btn btn-link p-0"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#siegePlus">
+                                Voir plus
+                            </button>
+
+                            <div class="collapse mt-3" id="siegePlus">
+                                <p>
+                                    Le bâtiment moderne a été inauguré en juillet 2015
+                                    afin d’offrir un cadre institutionnel digne
+                                    de la plus haute juridiction du pays.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CONTROLS -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#courCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#courCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================== STYLE CAROUSEL (À METTRE DANS extra_css) ================== -->
+<style>
+.carousel-img-wrap {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f4f4f6;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.carousel-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .5s ease;
+}
+
+.carousel-img-wrap:hover img {
+    transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+    .carousel-img-wrap {
+        height: 200px;
+    }
+}
+</style>
+
+{% endblock %}

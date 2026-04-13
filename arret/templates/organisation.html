@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Organisation de la Cour de Cassation d’Haïti{% endblock %}
+
+{% block content %}
+
+<!-- HERO / CAROUSEL BANNER -->
+<section class="position-relative text-white">
+    <div id="organisationCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-inner">
+
+            <!-- Slide 1 : Sections -->
+            <div class="carousel-item active"
+                 style="height:45vh;
+                 background: linear-gradient(rgba(10,26,60,0.7), rgba(10,26,60,0.7)),
+                 url('{% static 'images/cassation2.png' %}') center/cover no-repeat;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center px-4">
+                    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+                        Sections de la Cour de Cassation
+                    </h1>
+                    <p class="lead animate__animated animate__fadeInUp mt-2" style="max-width:760px;">
+                        Conformément au décret du 22 août 1995, la Cour est divisée
+                        en sections juridictionnelles chargées d’examiner les pourvois
+                        en cassation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 2 : Sections réunies -->
+            <div class="carousel-item"
+                 style="height:45vh;
+                 background: linear-gradient(rgba(10,26,60,0.7), rgba(10,26,60,0.7)),
+                 url('{% static 'images/cassation2.png' %}') center/cover no-repeat;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center px-4">
+                    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+                        Sections Réunies
+                    </h1>
+                    <p class="lead animate__animated animate__fadeInUp mt-2" style="max-width:760px;">
+                        Les Sections Réunies assurent l’unité de la jurisprudence
+                        et statuent sur les questions de droit majeures.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 3 : Services judiciaires -->
+            <div class="carousel-item"
+                 style="height:45vh;
+                 background: linear-gradient(rgba(10,26,60,0.7), rgba(10,26,60,0.7)),
+                 url('{% static 'images/greffe22.png' %}') center/cover no-repeat;">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center px-4">
+                    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+                        Organes et Services de la Cour
+                    </h1>
+                    <p class="lead animate__animated animate__fadeInUp mt-2" style="max-width:760px;">
+                        Le Parquet, le Greffe et l’Administration garantissent
+                        le fonctionnement régulier de la plus haute juridiction.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button"
+                data-bs-target="#organisationCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button"
+                data-bs-target="#organisationCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
+<!-- CONTENU PRINCIPAL -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                    <h3 class="fw-bold mb-3 text-primary">
+                        Organisation institutionnelle de la Cour de Cassation
+                    </h3>
+
+                    <p class="text-muted">
+                        En vertu du décret du 22 août 1995 relatif à l’organisation judiciaire,
+                        la Cour de Cassation est la plus haute juridiction de l’ordre judiciaire.
+                        Son organisation vise à garantir la bonne administration de la justice,
+                        l’unité de la jurisprudence et le respect de la légalité.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">1. Les Sections juridictionnelles</h5>
+                    <p class="text-muted">
+                        La Cour comprend principalement une Première Section
+                        et une Deuxième Section. Chaque section statue sur les pourvois
+                        en cassation relevant de sa compétence.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">2. Les Sections Réunies</h5>
+                    <p class="text-muted">
+                        Les Sections Réunies connaissent des affaires présentant
+                        une importance particulière ou nécessitant une harmonisation
+                        de la jurisprudence.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">3. L’Assemblée des Juges</h5>
+                    <p class="text-muted">
+                        L’Assemblée des Juges est un organe de concertation interne.
+                        Elle traite des questions relatives au fonctionnement
+                        et à l’organisation de la Cour.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">4. Le Parquet près la Cour de Cassation</h5>
+                    <p class="text-muted">
+                        Le Parquet représente les intérêts de la loi et de l’ordre public.
+                        Il donne des conclusions écrites ou orales sur les affaires soumises à la Cour.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">5. Le Greffe</h5>
+                    <p class="text-muted">
+                        Le Greffe assure la réception, l’enregistrement,
+                        la conservation des dossiers et la publication des arrêts.
+                    </p>
+
+                    <h5 class="fw-semibold mt-3">6. L’Administration de la Cour</h5>
+                    <p class="text-muted mb-0">
+                        Les services administratifs assurent la gestion matérielle
+                        et le soutien logistique nécessaires au fonctionnement régulier
+                        de la Cour de Cassation.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

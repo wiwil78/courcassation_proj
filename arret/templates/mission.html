@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mission de la Cour de Cassation d’Haïti{% endblock %}
+
+{% block content %}
+
+<!-- HERO / BANNER -->
+<section class="position-relative text-center text-white"
+         style="background: linear-gradient(rgba(10,26,60,0.7), rgba(10,26,60,0.7)),
+                url('{% static 'images/cassation2.png' %}') center/cover no-repeat; height: 45vh;">
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 px-3">
+        --<h1 class="display-5 fw-bold animate__animated animate__fadeInDown">
+            Mission de la Cour de Cassation
+        </h1>
+        <!--<p class="lead mt-3 animate__animated animate__fadeInUp" style="max-width:760px;">
+            Gardienne de la légalité, garante de l’unité de la jurisprudence
+            et pilier constitutionnel du Pouvoir judiciaire haïtien.
+        </p> -->
+    </div>
+</section>
+
+<!-- CONTENU PRINCIPAL -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- FONDEMENT JURIDIQUE -->
+            <div class="col-12">
+                <div class="card p-4 shadow-sm rounded-4">
+                    <h3 class="fw-bold mb-3 text-primary">Fondement constitutionnel et légal</h3>
+                    <p class="text-muted">
+                        En vertu de la Constitution du 29 mars 1987, le Pouvoir judiciaire
+                        est indépendant et exercé par la Cour de Cassation,
+                        les Cours d’Appel et les autres juridictions établies par la loi.
+                        Le décret du 22 août 1995 précise l’organisation et les attributions
+                        de la Cour de Cassation en tant que plus haute juridiction de l’ordre judiciaire.
+                    </p>
+                </div>
+            </div>
+
+            <!-- MISSION GÉNÉRALE -->
+            <div class="col-12">
+                <div class="card p-4 shadow-sm rounded-4 mt-4">
+                    <h3 class="fw-bold mb-3">Mission générale</h3>
+                    <p class="text-muted">
+                        La Cour de Cassation a pour mission essentielle d’assurer
+                        le respect de la Constitution et des lois de la République.
+                        Elle veille à la correcte application des règles de droit
+                        par les juridictions inférieures et contribue à la stabilité
+                        et à la sécurité juridique de l’État.
+                    </p>
+
+                    <h4 class="fw-semibold mt-4">Attributions fondamentales :</h4>
+                    <ul class="text-muted">
+                        <li>
+                            Contrôler la légalité des décisions rendues par les juridictions
+                            inférieures, sans réexaminer les faits.
+                        </li>
+                        <li>
+                            Assurer l’unité et la cohérence de la jurisprudence nationale.
+                        </li>
+                        <li>
+                            Garantir la suprématie de la loi et le respect des procédures judiciaires.
+                        </li>
+                        <li>
+                            Contribuer à la protection des droits et libertés fondamentaux,
+                            conformément à la Constitution.
+                        </li>
+                        <li>
+                            Renforcer l’indépendance et la crédibilité du Pouvoir judiciaire.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CARTES DE SYNTHÈSE -->
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-scale text-primary fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Gardienne de la loi</h5>
+                    <p class="text-muted">
+                        Veille à l’application correcte et uniforme
+                        des lois de la République.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-shield-check text-success fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Protection constitutionnelle</h5>
+                    <p class="text-muted">
+                        Contribue à la sauvegarde des droits
+                        et libertés garantis par la Constitution.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card h-100 p-4 shadow-sm rounded-4 text-center">
+                    <i class="bi bi-diagram-3 text-warning fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Unité jurisprudentielle</h5>
+                    <p class="text-muted">
+                        Assure la cohérence et la stabilité
+                        du système judiciaire haïtien.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

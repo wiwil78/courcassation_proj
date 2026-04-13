@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Galerie — Cour de Cassation d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ================= HERO ================= */
+.gallery-hero {
+    
+    padding: 90px 20px;
+    text-align: center;
+
+    position: relative;
+    height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: wave 3s infinite ease-in-out;
+
+    
+}
+.gallery-hero h1 {
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+.gallery-hero p {
+    max-width: 760px;
+    margin: auto;
+    opacity: .95;
+}
+
+/* ================= NATIONAL BAR ================= */
+.national-bar {
+    height: 6px;
+    background: linear-gradient(
+        to right,
+        #00209F 33%,
+        #ffffff 33%,
+        #ffffff 66%,
+        #D21034 66%
+    );
+}
+
+/* ================= FILTERS ================= */
+.gallery-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 35px 0;
+}
+.gallery-filters button {
+    border: 1px solid #0a1a3c;
+    background: #fff;
+    color: #0a1a3c;
+    padding: 6px 16px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+.gallery-filters button.active,
+.gallery-filters button:hover {
+    background: #0a1a3c;
+    color: #fff;
+}
+
+/* ================= GRID ================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8f9fa;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    border-left: 4px solid #00209F;
+    border-top: 4px solid #ffffff;
+    border-right: 4px solid #D21034;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0,0,0,.2);
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.78));
+    color: #fff;
+    padding: 14px;
+}
+.gallery-caption h6 {
+    margin: 0;
+    font-weight: 700;
+}
+.gallery-caption small {
+    opacity: .9;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+}
+.lightbox span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+/* ================= TYPING EFFECT ================= */
+.typing-cursor::after {
+    content: "|";
+    margin-left: 6px;
+    animation: blink 1s infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="gallery-hero">
+    <h1 id="typing-title"></h1>
+    <p id="typing-text"></p>
+</section>
+
+<!-- ================= NATIONAL BAR ================= -->
+<div class="national-bar"></div>
+
+<!-- ================= FILTERS ================= -->
+<div class="container">
+    <div class="gallery-filters">
+        <button class="active" data-filter="all">Tout</button>
+        <button data-filter="activites">Activités officielles</button>
+        <button data-filter="ceremonies">Cérémonies</button>
+        <button data-filter="institution">Institution</button>
+        <button data-filter="archives">Archives</button>
+    </div>
+</div>
+
+<!-- ================= GALLERY GRID ================= -->
+<section class="container mb-5">
+    <div class="gallery-grid">
+
+        <div class="gallery-item" data-category="activites">
+            <img src="{% static 'images/solennelle.jpg' %}" alt="Audience solennelle">
+            <div class="gallery-caption">
+                <h6>Audience solennelle</h6>
+                <small>Rentrée judiciaire</small>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="ceremonies">
+            <img src="{% static 'images/cooperation.jpg' %}" alt="Coopération internationale">
+            <div class="gallery-caption">
+                <h6>Coopération internationale</h6>
+                <small>Haïti – Taïwan</small>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="institution">
+            <img src="{% static 'images/batiment223.jpg' %}" alt="Bâtiment de la Cour">
+            <div class="gallery-caption">
+                <h6>Siège de la Cour</h6>
+                <small>Institution judiciaire</small>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="archives">
+            <img src="{% static 'images/palace.png' %}" alt="Archives historiques">
+            <div class="gallery-caption">
+                <h6>Archives historiques</h6>
+                <small>Photographie ancienne</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    <span onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ================= TYPING EFFECT =================
+const titleText = "Galerie officielle";
+/*const paragraphText = "Galerie institutionnelle présentant les activités, cérémonies, infrastructures et archives de la Cour de Cassation d’Haïti.";*/
+
+let titleIndex = 0;
+let paragraphIndex = 0;
+
+const titleEl = document.getElementById("typing-title");
+const textEl = document.getElementById("typing-text");
+
+titleEl.classList.add("typing-cursor");
+
+function typeTitle() {
+    if (titleIndex < titleText.length) {
+        titleEl.textContent += titleText.charAt(titleIndex++);
+        setTimeout(typeTitle, 90);
+    } else {
+        titleEl.classList.remove("typing-cursor");
+        setTimeout(() => {
+            textEl.classList.add("typing-cursor");
+            typeText();
+        }, 400);
+    }
+}
+
+function typeText() {
+    if (paragraphIndex < paragraphText.length) {
+        textEl.textContent += paragraphText.charAt(paragraphIndex++);
+        setTimeout(typeText, 35);
+    } else {
+        textEl.classList.remove("typing-cursor");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", typeTitle);
+
+// ================= FILTER =================
+const buttons = document.querySelectorAll('.gallery-filters button');
+const items = document.querySelectorAll('.gallery-item');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        items.forEach(item => {
+            item.style.display =
+                (filter === 'all' || item.dataset.category === filter)
+                ? 'block' : 'none';
+        });
+    });
+});
+
+// ================= LIGHTBOX =================
+items.forEach(item => {
+    item.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src =
+            item.querySelector('img').src;
+        document.getElementById('lightbox').style.display = 'flex';
+    });
+});
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+</script>
+{% endblock %}

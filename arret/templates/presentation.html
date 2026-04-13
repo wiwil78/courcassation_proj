@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Présentation — Cour de Cassation d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== HERO ===== */
+/* ===== HERO (drapo kap flote) ===== */
+.hero-section {
+    position: relative;
+    height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: wave 3s infinite ease-in-out;
+}
+@keyframes wave {
+    0% { background-position: center 0; }
+    50% { background-position: center 20px; }
+    100% { background-position: center 0; }
+}
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,38,84,0.65), rgba(237,41,57,0.65));
+}
+.hero-text {
+    position: relative; z-index:2;
+    top: 48%; transform: translateY(-48%);
+    color: #fff; text-align:center;
+}
+.hero-text h1 {
+    font-size: 3rem; font-weight: 900; letter-spacing: 1px;
+    text-shadow: 3px 3px 18px rgba(0,0,0,0.6);
+}
+
+/* ===== GENERAL ===== */
+.section-title {
+    text-align: left;
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    color: #002654;
+    border-left: 6px solid #ED2939;
+    padding-left: 12px;
+}
+.section-sub {
+    color: #002654; font-weight:700; margin-bottom:12px;
+}
+
+/* ===== STRUCTURES ===== */
+.image-card {
+    border-radius: 14px;
+    transition: transform 0.35s, box-shadow 0.35s;
+    background: #ffffff;
+}
+.image-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.icon-box {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a1a3c, #132f6b);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.icon-box i {
+    font-size: 5rem;
+    color: #D4AF37; /* or institutionnel */
+}
+
+.image-title {
+    background:#0a1a3c;
+    color:white;
+    text-align:center;
+    padding:12px;
+    font-weight:bold;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px;
+}
+
+.image-card p {
+    min-height: 70px;
+}
+
+/* ===== SAISINE DE LA COUR ===== */
+.saisine-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    border-left: 6px solid #002654;
+}
+
+.saisine-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #002654;
+}
+
+.saisine-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #ED2939;
+    cursor: pointer;
+}
+
+.saisine-link:hover {
+    text-decoration: underline;
+}
+
+.saisine-details {
+    display: none;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+
+/* ===== CAROUSEL ===== */
+#institutionCarousel {
+    background: linear-gradient(135deg, #0a1a3c, #132f6b);
+    border-radius: 20px;
+}
+#institutionCarousel i {
+    color: #D4AF37;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-text" data-aos="fade-up">
+        <h1 class="fw-bold">Présentation Institutionnelle</h1>
+        <p class="mt-2">
+         <!--   Cour de Cassation de la République d’Haïti-->
+        </p>
+    </div>
+</section>
+
+<!-- CAROUSEL INSTITUTIONNEL -->
+<section class="container my-5">
+    <div id="institutionCarousel" class="carousel slide text-white" data-bs-ride="carousel">
+        <div class="carousel-inner text-center py-5">
+
+            <div class="carousel-item active">
+               <!-- <i class="bi bi-balance-scale display-1"></i> -->
+                <h3 class="mt-3 fw-bold">LA COUR</h3>
+                <p class="w-75 mx-auto">
+                    La Cour de Cassation veille à l’application uniforme de la loi sur tout le territoire national.
+                </p>
+            </div>
+
+            <div class="carousel-item">
+             <!--   <i class="bi bi-book-half display-1"></i> -->
+                <h3 class="mt-3 fw-bold">LE PARQUET</h3>
+                <p class="w-75 mx-auto">
+                    Le Parquet agit au nom de l’État pour la défense de l’ordre public et de l’intérêt général.
+                </p>
+            </div>
+
+            <div class="carousel-item">
+               <!-- <i class="bi bi-journal-text display-1"></i> -->
+                <h3 class="mt-3 fw-bold">LE GREFFE</h3>
+                <p class="w-75 mx-auto">
+                    Les Greffes assurent la conservation, l’authenticité et la traçabilité des actes judiciaires.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- sCRIPT POUR L'AFFICHAGE DE VOIR PLUS -->
+<script>
+function toggleSaisine(id, btn) {
+    const el = document.getElementById(id);
+    if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+        btn.innerText = "Voir moins";
+    } else {
+        el.style.display = "none";
+        btn.innerText = "Voir plus";
+    }
+}
+</script>
+
+
+<!-- STRUCTURES -->
+
+<!-- SAISINE DE LA COUR -->
+<section class="container my-5">
+
+    <div class="row g-4">
+
+        <!-- COMMENT SAISIR LA COUR -->
+        <div class="col-md-6">
+            <div class="saisine-box">
+                <div class="saisine-title">
+                    Comment saisir la Cour de Cassation?
+                </div>
+
+                <span class="saisine-link"
+                      onclick="toggleSaisine('saisir-details', this)">
+                      Voir plus
+                </span>
+
+                <div id="saisir-details" class="saisine-details">
+                    Celui ou celle qui veut saisir la Cour de Cassation contre une décision 
+                    lui faisant grief doit en faire la déclaration au greffe du Tribunal ou de
+                     la Cour (qu’il ou qu’elle soit de l’ordre administratif ou judiciaire) 
+                     qui a rendu la décision ou par exploit signifié à personne ou à domicile
+                      et signé de la partie elle-même ou de son mandataire spéciale. 
+                      <br><br>
+                      Si la déclaration n’aura pas été faite au greffe du tribunal ou de la Cour
+                      qui a rendu la décision, elle sera signifiée au greffe de ce tribunal ou de 
+                      cette Cour qui l’inscrira à sa date sur un registre, à ce, destiné avec 
+                      toutes les énonciations prévues en ce cas.
+
+                    <br><br>
+                    Le Ministère Public près le Tribunal de Première Instance et le Ministère
+                     Public près la Cour d’Appel, qui, dans l’intérêt de la loi, veulent se 
+                     pourvoir en Cassation contre une décision, doivent en faire la déclaration
+                      au greffe du Tribunal ou de la Cour qui a rendu la décision.  
+                      
+                                           
+                      <br><br>
+                       Le Ministère Public près la Cour de Cassation devra faire la déclaration 
+                       de pourvoi au greffe de la Cour de Cassation.
+
+                </div>
+            </div>
+        </div>
+
+        <!-- QUI PEUT SAISIR LA COUR -->
+        <div class="col-md-6">
+            <div class="saisine-box">
+                <div class="saisine-title">
+                    Qui peut saisir la Cour de Cassation ?
+                </div>
+
+                <span class="saisine-link"
+                      onclick="toggleSaisine('qui-details', this)">
+                      Voir plus
+                </span>
+
+                <div id="qui-details" class="saisine-details">
+                    Le droit de saisir la Cour de Cassation n’est pas un droit réservé exclusivement aux avocats.
+                      N’importe qui peut saisir la Cour de Cassation.
+                       Il suffit d’en connaitre la procédure.
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

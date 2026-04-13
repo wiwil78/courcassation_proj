@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Publications — Cour de Cassation de la République d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ================= HERO (STYLE HOME, TYPING DOUX) ================= */
+.publication-hero {
+    position: relative;
+    height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: wave 4s infinite ease-in-out;
+}
+
+@keyframes wave {
+    0% { background-position: center 0; }
+    50% { background-position: center 15px; }
+    100% { background-position: center 0; }
+}
+
+.publication-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,38,84,0.65),
+        rgba(237,41,57,0.45)
+    );
+}
+
+.publication-hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 12px;
+}
+
+.publication-hero h1 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#typing-publication {
+    border-right: 2px solid rgba(255,255,255,0.85);
+    padding-right: 6px;
+    animation: blinkCursorSoft 1.2s infinite;
+}
+
+@keyframes blinkCursorSoft {
+    0% { border-color: transparent; }
+    50% { border-color: rgba(255,255,255,0.85); }
+    100% { border-color: transparent; }
+}
+
+.publication-hero p {
+    margin-top: 14px;
+    font-size: 1.05rem;
+    max-width: 700px;
+    opacity: 0.95;
+}
+
+/* ================= SECTION TITLES ================= */
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #002654;
+    border-left: 5px solid #ED2939;
+    padding-left: 14px;
+    margin-bottom: 30px;
+}
+
+/* ================= CTA ================= */
+.publication-cta {
+    text-align: center;
+    margin: 45px 0;
+}
+.publication-cta a {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 40px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #002654, #0b4fa3);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    transition: all 0.3s ease;
+}
+.publication-cta a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+}
+
+/* ================= PUBLICATION GRID ================= */
+.pub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.pub-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pub-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.14);
+}
+.pub-card h5 {
+    font-weight: 800;
+    color: #002654;
+    margin-bottom: 8px;
+}
+.pub-card p {
+    font-size: 0.95rem;
+    color: #555;
+}
+.pub-card ul li {
+    margin-bottom: 8px;
+}
+.pub-card a {
+    font-weight: 600;
+    color: #ED2939;
+    text-decoration: none;
+}
+.pub-card a:hover {
+    text-decoration: underline;
+}
+
+/* ================= NEWSLETTER ================= */
+.newsletter-box {
+    background: linear-gradient(135deg, #002654, #0b4fa3);
+    color: #fff;
+    border-radius: 18px;
+    padding: 45px;
+    text-align: center;
+}
+.newsletter-box input {
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .publication-hero h1 { font-size: 2rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="publication-hero">
+    <div class="publication-hero-overlay"></div>
+
+    <div class="publication-hero-content container">
+        <h1>
+            <span id="typing-publication"></span>
+        </h1>
+        <p>
+            Constitution, textes légaux, arrêts et doctrine de la Cour de Cassation
+            de la République d’Haïti
+        </p>
+    </div>
+
+    <script>
+        const textPublication = "Publications officielles";
+        let i = 0;
+        const speedPub = 110;
+        const elPub = document.getElementById("typing-publication");
+
+        function typePublication() {
+            if (i < textPublication.length) {
+                elPub.textContent += textPublication.charAt(i);
+                i++;
+                setTimeout(typePublication, speedPub);
+            } else {
+                elPub.style.borderRight = "none";
+            }
+        }
+
+        window.addEventListener("load", typePublication);
+    </script>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="publication-cta">
+    <a href="{% url 'evenement_detail' %}">Accéder aux publications</a>
+</section>
+
+<!-- ================= CONSTITUTION & TEXTES ================= -->
+<section class="container my-5">
+    <h2 class="section-title">Constitution & Textes légaux</h2>
+    <div class="pub-grid">
+
+        <div class="pub-card">
+            <h5>Constitution</h5>
+            <p>Textes constitutionnels fondateurs de l’ordre juridique haïtien.</p>
+            <ul class="list-unstyled mt-3">
+                <li>📄 <a href="{% static 'pdfs/constitution1.pdf' %}" target="_blank">Constitution de 1987</a></li>
+                <li>📄 <a href="{% static 'pdfs/constitution2.pdf' %}" target="_blank">Constitution amendée</a></li>
+            </ul>
+        </div>
+
+        <div class="pub-card">
+            <h5>Lois & Décrets</h5>
+            <p>Textes régissant l’organisation judiciaire et le fonctionnement des juridictions.</p>
+            <ul class="list-unstyled mt-3">
+                <li>📄 <a href="{% static 'pdfs/organisation_judiciaire.pdf' %}" target="_blank">Organisation judiciaire</a></li>
+                <li>📄 <a href="{% static 'pdfs/cspj.pdf' %}" target="_blank">Conseil Supérieur du Pouvoir Judiciaire</a></li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= ARRETS ================= -->
+<section class="container my-5">
+    <h2 class="section-title">Arrêts de la Cour</h2>
+    <div class="pub-grid">
+        <div class="pub-card">
+            <h5>Arrêts de principe</h5>
+            <p>Décisions majeures ayant marqué la jurisprudence.</p>
+            <a href="#">Consulter</a>
+        </div>
+        <div class="pub-card">
+            <h5>Arrêts récents</h5>
+            <p>Dernières décisions rendues par la Cour de Cassation.</p>
+            <a href="#">Accéder</a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= DOCTRINE ================= -->
+<section class="container my-5">
+    <h2 class="section-title">Doctrine & Revues</h2>
+    <div class="pub-grid">
+        <div class="pub-card">
+            <h5>Publications doctrinales</h5>
+            <p>Analyses juridiques, études et revues spécialisées.</p>
+            <a href="#">Lire</a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="container my-5">
+    <div class="newsletter-box">
+        <h3>Lettre d’information</h3>
+        <p>Recevez les publications officielles et actualités de la Cour.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <input type="email" name="email"
+                           class="form-control mb-3"
+                           placeholder="Votre adresse e-mail" required>
+                </div>
+            </div>
+            <button class="btn btn-light px-4">S’abonner</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Rentrée Judiciaire 2025–2026 — Cour de Cassation{% endblock %}
+
+{% block extra_css %}
+<style>
+.hero-event {
+    height: 42vh;
+    background: url("{% static 'images/rentree_judiciaire.jpg' %}") center/cover no-repeat;
+    position: relative;
+}
+.hero-event::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,38,84,.7), rgba(237,41,57,.6));
+}
+.hero-event-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    top: 55%;
+    transform: translateY(-55%);
+}
+.hero-event-content h1 {
+    font-weight: 900;
+    text-shadow: 2px 2px 18px rgba(0,0,0,.6);
+}
+
+.section-title {
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #002654;
+    border-left: 6px solid #ED2939;
+    padding-left: 12px;
+    margin-bottom: 16px;
+}
+
+.info-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.gallery img {
+    border-radius: 10px;
+    transition: .3s;
+}
+.gallery img:hover {
+    transform: scale(1.05);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="hero-event">
+    <div class="hero-event-content container">
+        <h1>Rentrée Judiciaire 2025–2026</h1>
+        <p class="lead">Ouverture solennelle de l’année judiciaire</p>
+    </div>
+</section>
+
+<!-- ================= CONTENU ================= -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- ===== TEXTE PRINCIPAL ===== -->
+            <div class="col-lg-8">
+                <h2 class="section-title">Présentation de l’événement</h2>
+
+                <p>
+                    La Cour de Cassation de la République d’Haïti a procédé à l’ouverture
+                    solennelle de l’année judiciaire 2025–2026 au Palais de Justice de
+                    Port-au-Prince, en présence des plus hautes autorités judiciaires,
+                    administratives et institutionnelles du pays.
+                </p>
+
+                <p>
+                    Cette cérémonie marque un moment fort de la vie judiciaire nationale.
+                    Elle symbolise l’engagement renouvelé de la Cour en faveur de
+                    l’indépendance du pouvoir judiciaire, du respect de la Constitution
+                    et de la consolidation de l’État de droit.
+                </p>
+
+                <h4 class="mt-4 fw-bold">Extrait du discours du Président</h4>
+                <blockquote class="blockquote border-start ps-3 mt-3">
+                    « La justice doit demeurer impartiale, indépendante et accessible,
+                    car elle constitue le socle fondamental de la paix sociale
+                    et de la confiance des citoyens envers l’État. »
+                </blockquote>
+
+                <p class="fw-bold mt-2">
+                    — Jean Joseph Lebrun, Président de la Cour de Cassation
+                </p>
+            </div>
+
+            <!-- ===== INFOS OFFICIELLES ===== -->
+            <div class="col-lg-4">
+                <div class="info-box">
+                    <h5 class="fw-bold mb-3">Informations officielles</h5>
+
+                    <p><strong>📍 Lieu :</strong><br>
+                        Palais de Justice, Port-au-Prince
+                    </p>
+
+                    <p><strong>📅 Date :</strong><br>
+                        Octobre 2025
+                    </p>
+
+                    <p><strong>👥 Participants :</strong><br>
+                        Magistrats, autorités judiciaires,
+                        représentants de l’État
+                    </p>
+
+                    <p><strong>⚖️ Nature :</strong><br>
+                        Cérémonie solennelle
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= GALERIE ================= -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Galerie officielle</h2>
+
+        <div class="row g-3 gallery mt-3">
+            <div class="col-md-4">
+                <img src="{% static 'images/assemblee.jpg' %}" class="img-fluid">
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/batiment224.jpg' %}" class="img-fluid">
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/batiment223.jpg' %}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

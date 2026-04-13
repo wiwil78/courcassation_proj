@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Constitution de 1987 — Cour de Cassation{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h2 class="text-primary">
+            Constitution de la République d’Haïti (1987)
+        </h2>
+        <p class="text-muted">
+            Texte fondamental de l’ordre juridique haïtien.
+        </p>
+
+        <div class="d-flex gap-2 mt-3">
+            <a href="{% static 'pdfs/constitution1987fr.pdf' %}" target="_blank"
+               class="btn btn-outline-secondary btn-sm">
+                Télécharger (PDF officiel)
+            </a>
+        </div>
+    </div>
+
+    {% if texte.versions.exists %}
+<div class="alert alert-info">
+    <strong>Versions disponibles :</strong>
+    <ul>
+        {% for v in texte.versions.all %}
+        <li>
+            <a href="{% url 'texte_detail' v.id %}">
+                Version amendée — {{ v.date_publication }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+    <!-- RECHERCHE -->
+    <form method="get" class="mb-4">
+        <input type="text" name="q" class="form-control"
+               placeholder="Rechercher par numéro ou contenu d’article..."
+               value="{{ request.GET.q }}">
+    </form>
+
+    <!-- ARTICLES -->
+    {% for article in articles %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Article {{ article.numero }}
+                </h5>
+                <p class="card-text">
+                    {{ article.contenu }}
+                </p>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">
+            Aucun article trouvé.
+        </p>
+    {% endfor %}
+
+</section>
+{% endblock %}

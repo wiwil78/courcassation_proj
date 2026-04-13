@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Consultation des Arrêts — Cour de Cassation d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== HERO (IDENTIQUE HOME) ===== */
+.hero-section {
+    position: relative;
+    height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: wave 3s infinite ease-in-out;
+}
+
+@keyframes wave {
+    0% { background-position: center 0; }
+    50% { background-position: center 20px; }
+    100% { background-position: center 0; }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,38,84,0.65),
+        rgba(237,41,57,0.65)
+    );
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+#typing-title {
+    border-right: 3px solid rgba(255,255,255,0.9);
+    padding-right: 6px;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%   { border-color: transparent; }
+    50%  { border-color: rgba(255,255,255,0.9); }
+    100% { border-color: transparent; }
+}
+
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 2rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ARRÊTS ================= -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text container">
+        <h1>
+            <span id="typing-title"></span>
+        </h1>
+        <p class="lead mt-2">
+            Recherchez, filtrez et consultez les arrêts de la Cour de Cassation
+        </p>
+    </div>
+
+    <script>
+        const titleText = "Consultation des Arrêts";
+        let index = 0;
+        const speed = 80;
+        const typingElement = document.getElementById("typing-title");
+
+        function typeTitle() {
+            if (index < titleText.length) {
+                typingElement.textContent += titleText.charAt(index);
+                index++;
+                setTimeout(typeTitle, speed);
+            } else {
+                typingElement.style.borderRight = "none";
+            }
+        }
+
+        window.addEventListener("load", typeTitle);
+    </script>
+</section>
+
+<!-- ================= CONTENU ================= -->
+<div class="container my-5">
+
+    <!-- ===== FILTRES ===== -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="GET" class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Recherche</label>
+                    <input type="text" name="q" class="form-control"
+                           placeholder="Mot clé, partie, résumé..."
+                           value="{{ request.GET.q }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Année</label>
+                    <input type="number" name="annee" class="form-control"
+                           placeholder="2024"
+                           value="{{ request.GET.annee }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Catégorie</label>
+                    <select name="categorie" class="form-select">
+                        <option value="">Toutes</option>
+                        {% for c in categories %}
+                        <option value="{{ c.id }}"
+                            {% if request.GET.categorie == c.id|stringformat:"i" %}selected{% endif %}>
+                            {{ c.nom }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Section</label>
+                    <input type="text" name="section" class="form-control"
+                           placeholder="Première, Deuxième, Réunies"
+                           value="{{ request.GET.section }}">
+                </div>
+
+                <div class="col-12 text-end">
+                    <button type="submit"
+                            class="btn text-white fw-bold px-4"
+                            style="background: linear-gradient(to right, #002654, #ED2939);">
+                        🔎 Rechercher
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== LISTE DES ARRÊTS ===== -->
+    <div class="card shadow-sm">
+        <div class="card-header text-white"
+             style="background-color:#002654;">
+            <h5 class="mb-0 fw-bold">Résultats</h5>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Catégorie</th>
+                        <th>Section</th>
+                        <th>Domaine</th>
+                        <th>Résumé</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for a in arrets %}
+                    <tr>
+                        <td>{{ a.date_arret }}</td>
+                        <td>{{ a.categorie.nom }}</td>
+                        <td>{{ a.section }}</td>
+                        <td>{{ a.domaine }}</td>
+                        <td>{{ a.resume|truncatewords:12 }}</td>
+                        <td class="text-end">
+
+                            {% if a.fichier_pdf %}
+                            <a href="{{ a.fichier_pdf.url }}" target="_blank"
+                               class="btn btn-sm btn-outline-primary me-2">
+                                📄 PDF
+                            </a>
+                            {% endif %}
+
+                            <a href="{% url 'detail_arret' a.id %}"
+                               class="btn btn-sm btn-success">
+                                🔍 Détails
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-3">
+                            Aucun arrêt trouvé.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

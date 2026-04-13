@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cour de Cassation de la République d’Haïti{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        /* ================= HEADER NATIONAL ================= */
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+
+            background: linear-gradient(
+                to right,
+                rgba(0,32,159,0.82),
+                rgba(10,26,60,0.82)
+            );
+
+            backdrop-filter: blur(6px);
+            transition: all 0.35s ease;
+        }
+
+        .main-header.scrolled {
+            background: linear-gradient(
+                to right,
+                #00209F,
+                #0a1a3c
+            );
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.45),
+                inset 0 -4px 0 #D21034;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #D4AF37 !important;
+        }
+
+        .navbar-toggler {
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* LOGO */
+        .navbar-brand strong {
+            font-size: 1.05rem;
+            line-height: 1.1;
+        }
+
+        .navbar-brand small {
+            font-size: 0.72rem;
+            opacity: 0.85;
+        }
+
+        /* BAR DRAPO */
+        .flag-bar {
+            height: 6px;
+            background: linear-gradient(
+                to right,
+                #00209F 33%,
+                #D21034 33%,
+                #D21034 66%,
+                #ffffff 66%
+            );
+        }
+
+        /* MENU MOBILE */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background-color: #00209F;
+                padding: 15px;
+                border-radius: 0 0 14px 14px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+
+            .navbar-nav .nav-link:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* DROPDOWN HOVER DESKTOP */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
+        }
+
+        /* FOOTER */
+       /* ================= FOOTER INSTITUTIONNEL ================= */
+
+footer {
+    background: linear-gradient(
+        to right,
+        #00209F,
+        #0a1a3c
+    );
+    color: #ffffff;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+        to right,
+        #00209F,
+        #D21034,
+        #ffffff
+    );
+}
+
+.footer-title {
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.footer-muted {
+    opacity: 0.85;
+    line-height: 1.6;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.footer-link:hover {
+    color: #D4AF37;
+    text-decoration: none;
+}
+
+.footer-divider {
+    width: 160px;
+    margin: 28px auto 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.footer-bottom {
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- BAR DRAPO -->
+<div class="flag-bar"></div>
+
+<!-- HEADER -->
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+
+            <!-- LOGO TEXTE -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+                <div>
+                    <strong class="d-block">Cour de Cassation</strong>
+                    <small class="d-block">de la République d’Haïti</small>
+                </div>
+            </a>
+
+            <!-- TOGGLER -->
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- MENU -->
+            <div class="collapse navbar-collapse justify-content-end" id="mainMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                    <!--    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'mission' %}">Mission</a></li>
+                            <li><a class="dropdown-item" href="{% url 'organisation' %}">Organisation</a></li>
+                            <li><a class="dropdown-item" href="{% url 'procedure' %}">Procédure</a></li>
+                        </ul> -->
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'historique' %}">Historique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'presentation' %}">Présentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'publication' %}">Publication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'consulter_arret' %}">Voir les Arrêts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'galerie' %}">Galerie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<!-- ESPACE HEADER -->
+<div style="margin-top:110px;"></div>
+
+<!-- CONTENU -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer class="pt-5 pb-4 mt-5">
+    <div class="container">
+
+        <div class="row text-center text-md-start">
+
+            <!-- ADRESSE -->
+            <div class="col-md-4 mb-4">
+                <h6 class="footer-title">Adresse</h6>
+
+                <p class="footer-muted mb-2">
+                    Cour de Cassation<br>
+                    République d’Haïti<br>
+                    Port-au-Prince
+                </p>
+
+                <p class="footer-muted mb-0">
+                    <i class="bi bi-envelope"></i> contact@courcassation.ht<br>
+                    <i class="bi bi-telephone"></i> +509 1234 5678
+                </p>
+            </div>
+
+            <!-- LIENS -->
+            <div class="col-md-4 mb-4">
+                <h6 class="footer-title">Liens rapides</h6>
+
+                <a href="{% url 'home' %}" class="footer-link">Accueil</a>
+                <a href="{% url 'historique' %}" class="footer-link">Historique</a>
+              <!--  <a href="{% url 'organisation' %}" class="footer-link">Organisation</a> -->
+                <a href="{% url 'publication' %}" class="footer-link">Publications</a>
+                <a href="{% url 'consulter_arret' %}" class="footer-link">Arrêts</a>
+                <a href="{% url 'contact' %}" class="footer-link">Contact</a>
+            </div>
+
+            <!-- MENTIONS -->
+            <div class="col-md-4 mb-4">
+                <h6 class="footer-title">Mentions légales</h6>
+
+                <p class="footer-muted mb-2">
+                    Institution judiciaire suprême de la République d’Haïti.
+                </p>
+
+                <!--<a href="#" class="footer-link">Mentions légales</a>
+                <a href="#" class="footer-link">Politique de confidentialité</a>
+                <a href="#" class="footer-link">Conditions d’utilisation</a> -->
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom text-center mb-0">
+            © 2025 Cour de Cassation de la République d’Haïti — Tous droits réservés
+        </p>
+
+    </div>
+</footer>
+
+
+
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+    AOS.init({ duration: 900, once: true });
+
+    window.addEventListener("scroll", () => {
+        document
+            .querySelector(".main-header")
+            .classList.toggle("scrolled", window.scrollY > 60);
+    });
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

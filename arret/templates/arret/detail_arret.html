@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- HERO SECTION -->
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">{{ arret.section }} - {{ arret.categorie.nom }}</h1>
+        <p class="text-muted">Date : {{ arret.date_arret }}</p>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <p><strong>Domaine :</strong> {{ arret.domaine }}</p>
+            <p><strong>Parties :</strong> {{ arret.parties }}</p>
+            <p><strong>Décision attaquée :</strong> {{ arret.decision_attaquee }}</p>
+            <p><strong>Textes de loi :</strong> {{ arret.textes_loi }}</p>
+            <p><strong>Résumé :</strong> {{ arret.resume }}</p>
+            <p><strong>Texte intégral :</strong> {{ arret.le_texte }}</p>
+
+            {% if arret.fichier_pdf %}
+            <a href="{{ arret.fichier_pdf.url }}" target="_blank"
+               class="btn btn-primary mt-3">
+               📄 Télécharger PDF
+            </a>
+            {% endif %}
+
+            <a href="{% url 'consulter_arret' %}" class="btn btn-outline-secondary mt-3 ms-2">
+                🔙 Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="py-5 text-white" style="background: linear-gradient(to right, #002654, #ED2939);">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Enregistrement d’un Arrêt</h1>
+        <p class="lead">Veuillez remplir soigneusement le formulaire ci-dessous</p>
+    </div>
+</section>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white" style="background-color:#002654;">
+                    <h4 class="mb-0">Formulaire d’Enregistrement</h4>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            {% for field in form %}
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">{{ field.label }}</label>
+                                    {{ field }}
+                                    <small class="text-danger">{{ field.errors }}</small>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">
+                                Enregistrer l’Arrêt
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

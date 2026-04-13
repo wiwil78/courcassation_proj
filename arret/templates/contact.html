@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact | Cour de Cassation d’Haïti{% endblock %}
+
+{% block content %}
+
+<style>
+/* ======= HERO CONTACT ======= */
+.contact-hero {
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    height: 45vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+.contact-hero h1 {
+    position: relative;
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 12px black;
+}
+
+/* ===== FORMULAIRE ===== */
+.contact-form {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+}
+.contact-form input, 
+.contact-form textarea,
+.contact-form select {
+    border-radius: 10px;
+}
+.contact-form button {
+    background-color: #0a1a3c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+.contact-form button:hover {
+    background-color: #D4AF37;
+    color: #0a1a3c;
+}
+
+/* ===== INFOS MARBLES ===== */
+.info-box {
+    background: #0a1a3c;
+    color: white;
+    padding: 25px;
+    border-radius: 14px;
+    height: 100%;
+}
+.info-box i {
+    font-size: 2rem;
+    color: #D4AF37;
+}
+.info-box h4 {
+    margin-top: 10px;
+    font-weight: 600;
+}
+.info-box p {
+    opacity: 0.9;
+}
+
+/* ===== MAP ===== */
+.map-container {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+</style>
+
+<!-- HERO SECTION -->
+<div class="contact-hero">
+    <h1 data-aos="fade-up">Contactez-Nous</h1>
+</div>
+
+<!-- FLASH MESSAGES -->
+{% if messages %}
+<div class="container mt-4">
+    {% for msg in messages %}
+        <div class="alert alert-success">{{ msg }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- CONTACT SECTION -->
+<section class="py-5">
+<div class="container">
+
+    <div class="row g-4">
+
+        <!-- INFO COLUMNS -->
+        <div class="col-md-4" data-aos="fade-right">
+            <div class="info-box">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Adresse</h4>
+                <p>Port-au-Prince, Haïti</p>
+            </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up">
+            <div class="info-box">
+                <i class="bi bi-telephone"></i>
+                <h4>Téléphone</h4>
+                <p>+509 1234 5678</p>
+            </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-left">
+            <div class="info-box">
+                <i class="bi bi-envelope"></i>
+                <h4>Email</h4>
+                <p>contact@courcassation.ht</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div class="row mt-5">
+        <div class="col-lg-6" data-aos="fade-right">
+            <h2 class="mb-4">Envoyez-nous un message</h2>
+
+            <form class="contact-form" method="POST" action="">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="mb-3">
+                    <label class="form-label">Votre nom</label>
+                    {{ form.nom }}
+                    {{ form.nom.errors }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Votre email</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Téléphone</label>
+                    {{ form.telephone }}
+                    {{ form.telephone.errors }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sujet</label>
+                    {{ form.sujet }}
+                    {{ form.sujet.errors }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    {{ form.message }}
+                    {{ form.message.errors }}
+                </div>
+
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+
+        <!-- MAP -->
+        <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="mb-4">Localisation</h2>
+            <div class="map-container">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.380443056793!2d-72.33835002507623!3d18.59878168252854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb9e6bd1e4c3a3d%3A0x9bd6ca5e1efc9c35!2sCour%20de%20Cassation!5e0!3m2!1sfr!2sht!4v1733968899999" 
+                  width="100%" height="350" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+{% endblock %}

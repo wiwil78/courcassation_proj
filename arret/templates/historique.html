@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Notice historique — Cour de Cassation de la République d’Haïti
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ======================================================
+   HERO HISTORIQUE
+====================================================== */
+.hero-historique {
+    position: relative;
+    height: 45vh; /* un peu plus grand pour effet visuel */
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-historique::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 38, 84, 0.65),
+        rgba(237, 41, 57, 0.65)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 15px;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-shadow: 2px 2px 14px rgba(0,0,0,0.6);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 12px;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+}
+
+/* Animation lettres qui tombent */
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-80px);
+    animation: drop 0.6s ease forwards;
+}
+
+@keyframes drop {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================================================
+   SECTIONS
+====================================================== */
+.section-title {
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: #002654;
+    border-left: 6px solid #ED2939;
+    padding-left: 14px;
+    margin-bottom: 25px;
+}
+
+.intro-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ======================================================
+   CAROUSEL DATES (bleu plus clair)
+====================================================== */
+#datesCarousel {
+    background: linear-gradient(135deg, #0a3f88, #3561a7);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+#datesCarousel .carousel-inner { min-height: 240px; }
+#datesCarousel h2 { font-size: 2.2rem; font-weight: 900; color: #D4AF37; }
+#datesCarousel p { font-size: 1rem; color: #fff; max-width: 80%; margin: 0 auto; }
+
+/* ======================================================
+   PÉRIODES
+====================================================== */
+.period-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    border-left: 6px solid #002654;
+    transition: transform 0.25s ease;
+}
+.period-box:hover { transform: translateY(-4px); }
+.period-title { font-weight: 800; color: #002654; font-size: 1.2rem; }
+.period-summary { margin-top: 8px; color: #444; }
+.read-more { margin-top: 10px; display: inline-block; font-weight: 700; color: #ED2939; cursor: pointer; }
+.read-more:hover { text-decoration: underline; }
+.period-details { display: none; margin-top: 14px; border-top: 1px solid #ddd; padding-top: 14px; line-height: 1.8; color: #333; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-historique">
+    <div class="hero-content">
+        <h1 class="hero-title" id="animated-title">
+            Notice historique de la Cour de Cassation
+        </h1>
+        <div class="hero-subtitle">
+            La juridiction suprême qui veille à l’unité et à la cohérence du droit en Haïti
+        </div>
+    </div>
+</section>
+
+<!-- CAROUSEL DES GRANDES DATES -->
+<section class="container my-5">
+    <div id="datesCarousel" class="carousel slide text-center" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner py-5">
+
+            <div class="carousel-item active">
+                <h2>1806</h2>
+                <p>Après l’indépendance, le Sénat assure temporairement les fonctions de juridiction suprême avant la création d’un tribunal spécialisé.</p>
+            </div>
+
+            <div class="carousel-item">
+                <h2>1816–1819</h2>
+                <p>Création du Tribunal de Cassation sous Alexandre Pétion. Compétences définies pour uniformiser la jurisprudence et vérifier l’application du droit.</p>
+            </div>
+
+            <div class="carousel-item">
+                <h2>1843</h2>
+                <p>Réforme judiciaire avec la Constitution de 1843, renforçant le rôle du Tribunal dans le système judiciaire.</p>
+            </div>
+
+            <div class="carousel-item">
+                <h2>1950–1954</h2>
+                <p>Institution officielle de la Cour de Cassation moderne, définie par la Constitution et les lois en vigueur.</p>
+            </div>
+
+            <div class="carousel-item">
+                <h2>1987</h2>
+                <p>La Constitution actuelle confirme le rôle de la Cour de Cassation comme juridiction de dernier ressort, garante de l’unité de la jurisprudence.</p>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#datesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#datesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="container my-5">
+    <h2 class="section-title">Aperçu historique</h2>
+    <p class="intro-text">
+        La Cour de Cassation de la République d’Haïti est la juridiction suprême du pays.
+        Elle veille à l’unité de la jurisprudence et assure la stricte application du droit 
+        conformément à la Constitution et aux lois de la République. Depuis sa création, elle a joué un rôle central dans la consolidation de l’État de droit et la protection des principes fondamentaux.
+    </p>
+</section>
+
+<!-- PÉRIODES -->
+<section class="container my-5">
+
+    <div class="period-box">
+        <div class="period-title">1806</div>
+        <div class="period-summary">Fonctions juridictionnelles exercées temporairement par le Sénat.</div>
+        <span class="read-more" onclick="togglePeriod('p1', this)">Voir plus</span>
+        <div id="p1" class="period-details">
+            Après l’indépendance, la structure judiciaire était encore embryonnaire. Le Sénat assurait le rôle de juridiction suprême avant la création officielle du Tribunal de Cassation. La justice était alors influencée par les besoins de consolidation de l’État.
+        </div>
+    </div>
+
+    <div class="period-box">
+        <div class="period-title">1816–1819</div>
+        <div class="period-summary">Création du Tribunal de Cassation.</div>
+        <span class="read-more" onclick="togglePeriod('p2', this)">Voir plus</span>
+        <div id="p2" class="period-details">
+            Sous Alexandre Pétion, le Tribunal de Cassation est formellement établi. Il assure la vérification de l’application du droit et l’uniformité des décisions judiciaires, marquant une étape essentielle dans la structuration de la justice haïtienne.
+        </div>
+    </div>
+
+    <div class="period-box">
+        <div class="period-title">1843</div>
+        <div class="period-summary">Réforme judiciaire avec la Constitution de 1843.</div>
+        <span class="read-more" onclick="togglePeriod('p3', this)">Voir plus</span>
+        <div id="p3" class="period-details">
+            La Constitution de 1843 renforce le rôle du Tribunal de Cassation, clarifie les compétences judiciaires et illustre l’évolution progressive vers un système plus structuré.
+        </div>
+    </div>
+
+    <div class="period-box">
+        <div class="period-title">1950–1954</div>
+        <div class="period-summary">Institution moderne de la Cour de Cassation.</div>
+        <span class="read-more" onclick="togglePeriod('p4', this)">Voir plus</span>
+        <div id="p4" class="period-details">
+            La Constitution de 1950 consacre officiellement la Cour de Cassation moderne, définissant son organisation, ses juges et ses compétences dans l’ordre judiciaire haïtien.
+        </div>
+    </div>
+
+    <div class="period-box">
+        <div class="period-title">1987</div>
+        <div class="period-summary">Confirmation par la Constitution actuelle.</div>
+        <span class="read-more" onclick="togglePeriod('p5', this)">Voir plus</span>
+        <div id="p5" class="period-details">
+            La Constitution de 1987 confirme le rôle central de la Cour de Cassation comme juridiction suprême. Elle assure l’unité de la jurisprudence, le respect des droits constitutionnels et contribue à la consolidation de l’État de droit.
+        </div>
+    </div>
+
+</section>
+
+<!-- CONCLUSION -->
+<section class="container my-5">
+    <h2 class="section-title">Rôle et mission actuelle</h2>
+    <p class="intro-text">
+        Aujourd’hui, la Cour de Cassation reste la garante de l’application uniforme du droit en Haïti. 
+        Elle traite les affaires de dernier ressort, vérifie la légalité des décisions judiciaires et contribue à protéger les droits fondamentaux des citoyens. Son rôle est essentiel pour maintenir la confiance dans le système judiciaire et assurer la stabilité de l’État de droit.
+    </p>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const title = document.getElementById("animated-title");
+    const text = title.textContent.trim();
+    title.textContent = "";
+    [...text].forEach((char, index) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.classList.add("letter");
+        span.style.animationDelay = `${index * 0.05}s`;
+        title.appendChild(span);
+    });
+});
+
+function togglePeriod(id, btn) {
+    const el = document.getElementById(id);
+    const visible = el.style.display === "block";
+    el.style.display = visible ? "none" : "block";
+    btn.innerText = visible ? "Voir plus" : "Voir moins";
+}
+</script>
+{% endblock %}
