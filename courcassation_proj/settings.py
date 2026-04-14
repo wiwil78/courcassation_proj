@@ -13,8 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -----------------------
 # SECURITY
 # -----------------------
-SECRET_KEY = 'django-insecure-*uukj3@w+im$tg6lm4(w6@ltj#iqx2i2io01am9-z96h8!4h*g'
-DEBUG = True
+import os
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
+DEBUG = False
 
 ALLOWED_HOSTS = ['.onrender.com','127.0.0.1','localhost']   # mete domèn ou lè w ap deplwaye
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 # -----------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # AJOUTE SA
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,18 +128,20 @@ USE_TZ = True
 # STATIC & MEDIA FILES
 # -----------------------
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # -----------------------
 # DJANGO DEFAULTS
 # -----------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 

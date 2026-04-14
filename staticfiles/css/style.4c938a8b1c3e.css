@@ -1,0 +1,102 @@
+body {
+    font-family: "Segoe UI", Helvetica, sans-serif;
+}
+
+/* HEADER */
+.main-header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    height: 70px;
+}
+
+.title {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: .9rem;
+    color: #777;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #333;
+    transition: .3s;
+}
+.nav-link:hover {
+    color: #0055ff;
+}
+
+/* HERO */
+.hero-section {
+    height: 75vh;
+    background: url("../images/cour.9bf26719baa6.png") center/cover no-repeat;
+    position: relative;
+}
+.hero-section .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,.35);
+}
+.hero-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-shadow: 1px 1px 4px black;
+}
+
+/* GOLD BUTTON */
+.btn-gold {
+    background: #d4af37;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+.btn-gold:hover {
+    background: #b8962f;
+}
+
+/* SECTIONS */
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+}
+
+.section-subtitle {
+    color: #777;
+}
+
+/* CARDS */
+.service-card {
+    border: 1px solid #eee;
+    transition: .3s;
+    border-radius: 10px;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
+/* ARRÊTS */
+.arrêt-card {
+    border-radius: 10px;
+    transition: .3s;
+}
+.arrêt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+/* FOOTER */
+.footer-section {
+    background: #001b48;
+}
