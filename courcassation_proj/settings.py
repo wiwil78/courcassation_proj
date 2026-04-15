@@ -17,7 +17,17 @@ import os
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
 DEBUG = False
 
-ALLOWED_HOSTS = ['.onrender.com','127.0.0.1','localhost']   # mete domèn ou lè w ap deplwaye
+ALLOWED_HOSTS = [
+    "courdecassation.ht",
+    "www.courdecassation.ht",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://courdecassation.ht",
+    "https://www.courdecassation.ht",
+]
+
+#ALLOWED_HOSTS = ['.onrender.com','127.0.0.1','localhost']   # mete domèn ou lè w ap deplwaye
 
 
 # -----------------------
