@@ -20,6 +20,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "courdecassation.ht",
     "www.courdecassation.ht",
+    ".onrender.com",   # ENPÒTAN
 ]
 
 CSRF_TRUSTED_ORIGINS = [
