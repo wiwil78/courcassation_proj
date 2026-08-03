@@ -150,6 +150,75 @@
     border-radius: 10px;
 }
 
+
+/* ================= FACEBOOK ACTUALITÉS ================= */
+.facebook-news {
+    background: linear-gradient(135deg, #002654, #0b4fa3);
+    border-radius: 18px;
+    padding: 32px 38px;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+}
+
+.facebook-news-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.facebook-label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #fff;
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.facebook-news h2 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    font-size: 1.65rem;
+    margin-bottom: 10px;
+}
+
+.facebook-news p {
+    margin: 0;
+    max-width: 700px;
+    opacity: 0.92;
+}
+
+.facebook-btn {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: #fff;
+    color: #002654;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.facebook-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+    color: #002654;
+}
+
+@media (max-width: 768px) {
+    .facebook-news-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .facebook-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
     .publication-hero h1 { font-size: 2rem; }
 }
@@ -248,6 +317,32 @@
             <h5>Publications doctrinales</h5>
             <p>Analyses juridiques, études et revues spécialisées.</p>
             <a href="#">Lire</a>
+        </div>
+    </div>
+</section>
+
+<!-- =================Publications facebook ======== -->
+
+<!-- ================= ACTUALITÉS ================= -->
+<section class="container my-5">
+    <div class="facebook-news">
+        <div class="facebook-news-content">
+            <div>
+                <span class="facebook-label">ACTUALITÉS</span>
+                <h2>Suivez l’actualité de la Cour</h2>
+                <p>
+                    Retrouvez les dernières informations, communications,
+                    activités et actualités de la Cour de Cassation
+                    sur notre page officielle Facebook.
+                </p>
+            </div>
+
+            <a href="https://www.facebook.com/Cassation2025/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="facebook-btn">
+                Voir nos actualités →
+            </a>
         </div>
     </div>
 </section>
