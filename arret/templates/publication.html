@@ -153,61 +153,93 @@
 
 /* ================= FACEBOOK ACTUALITÉS ================= */
 .facebook-news {
-    background: linear-gradient(135deg, #002654, #0b4fa3);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #002654 0%, #073b78 100%);
     border-radius: 18px;
-    padding: 32px 38px;
+    padding: 38px 42px;
     color: #fff;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+    box-shadow: 0 10px 28px rgba(0, 38, 84, 0.14);
+}
+
+.facebook-news::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 50%;
+    right: -60px;
+    top: -70px;
 }
 
 .facebook-news-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 35px;
+}
+
+.facebook-news-text {
+    max-width: 720px;
 }
 
 .facebook-label {
     display: inline-block;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 1.5px;
-    color: #fff;
-    opacity: 0.85;
-    margin-bottom: 8px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 9px;
 }
 
 .facebook-news h2 {
     font-family: "Libre Baskerville", "Times New Roman", serif;
-    font-size: 1.65rem;
-    margin-bottom: 10px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
 .facebook-news p {
     margin: 0;
-    max-width: 700px;
-    opacity: 0.92;
+    line-height: 1.7;
+    font-size: 0.98rem;
+    color: rgba(255,255,255,0.90);
 }
 
 .facebook-btn {
     flex-shrink: 0;
-    display: inline-block;
-    padding: 13px 25px;
-    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 24px;
+    border-radius: 8px;
     background: #fff;
     color: #002654;
     font-weight: 700;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
 }
 
 .facebook-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
     color: #002654;
 }
 
+.facebook-icon {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
 @media (max-width: 768px) {
+    .facebook-news {
+        padding: 30px 25px;
+    }
+
     .facebook-news-content {
         flex-direction: column;
         align-items: flex-start;
@@ -215,7 +247,7 @@
 
     .facebook-btn {
         width: 100%;
-        text-align: center;
+        justify-content: center;
     }
 }
 
@@ -326,14 +358,17 @@
 <!-- ================= ACTUALITÉS ================= -->
 <section class="container my-5">
     <div class="facebook-news">
+
         <div class="facebook-news-content">
-            <div>
-                <span class="facebook-label">ACTUALITÉS</span>
-                <h2>Suivez l’actualité de la Cour</h2>
+
+            <div class="facebook-news-text">
+                <span class="facebook-label">ACTUALITÉS DE LA COUR</span>
+
+                <h2>Suivez l’actualité de la Cour de Cassation</h2>
+
                 <p>
-                    Retrouvez les dernières informations, communications,
-                    activités et actualités de la Cour de Cassation
-                    sur notre page officielle Facebook.
+                    Retrouvez nos dernières informations, communications,
+                    activités et annonces sur notre page officielle Facebook.
                 </p>
             </div>
 
@@ -341,12 +376,16 @@
                target="_blank"
                rel="noopener noreferrer"
                class="facebook-btn">
-                Voir nos actualités →
+
+                <span class="facebook-icon">f</span>
+                <span>Voir nos actualités</span>
+
             </a>
+
         </div>
+
     </div>
 </section>
-
 <!-- ================= NEWSLETTER ================= -->
 <section class="container my-5">
     <div class="newsletter-box">
