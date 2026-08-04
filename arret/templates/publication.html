@@ -294,10 +294,10 @@
 </section>
 
 <!-- ================= CTA ================= -->
-<section class="publication-cta">
+<!--<section class="publication-cta">
 <a href="{% url 'consulter_arret' %}">Consulter</a>
- <!--   <a href="#">Accéder aux publications</a> -->
-</section>
+   <a href="#">Accéder aux publications</a> 
+</section> -->
 
 <!-- ================= CONSTITUTION & TEXTES ================= -->
 <section class="container my-5">
@@ -325,7 +325,7 @@
     </div>
 </section>
 
-<!-- ================= ARRETS ================= -->
+<!-- ================= ARRETS ================= 
 <section class="container my-5">
     <h2 class="section-title">Arrêts de la Cour</h2>
     <div class="pub-grid">
@@ -338,6 +338,26 @@
             <h5>Arrêts récents</h5>
             <p>Dernières décisions rendues par la Cour de Cassation.</p>
             <a href="#">Accéder</a>
+        </div>
+    </div>
+</section> -->
+
+<!-- ================= ARRÊTS DE LA COUR ================= -->
+<section class="container my-5">
+    <h2 class="section-title">Arrêts de la Cour</h2>
+
+    <div class="pub-grid">
+        <div class="pub-card">
+            <h5>Consultation des arrêts</h5>
+
+            <p>
+                Consultez les décisions rendues par la Cour de Cassation
+                et recherchez les arrêts selon différents critères.
+            </p>
+
+            <a href="{% url 'consulter_arret' %}">
+                🔍 Consulter les arrêts
+            </a>
         </div>
     </div>
 </section>
