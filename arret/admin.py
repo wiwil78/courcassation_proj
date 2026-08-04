@@ -134,9 +134,37 @@ admin.site.register(Article)
 #pour actualites
 
 from django.contrib import admin
-from .models import Actualite
+from .models import Actualite, Revue
 
 @admin.register(Actualite)
 class ActualiteAdmin(admin.ModelAdmin):
     list_display = ('titre', 'date_publication')
     ordering = ('-date_publication',)
+
+# ================= REVUES =================
+
+@admin.register(Revue)
+class RevueAdmin(admin.ModelAdmin):
+    list_display = (
+        'titre',
+        'numero',
+        'annee',
+        'date_publication',
+        'actif',
+    )
+
+    list_filter = (
+        'annee',
+        'actif',
+    )
+
+    search_fields = (
+        'titre',
+        'numero',
+        'description',
+    )
+
+    ordering = (
+        '-annee',
+        '-date_publication',
+    )
