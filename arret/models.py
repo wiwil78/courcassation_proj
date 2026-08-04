@@ -180,3 +180,23 @@ class Actualite(models.Model):
 
     def __str__(self):
         return self.titre
+
+# pou poublikasyon revue kou kasasyon
+class Revue(models.Model):
+    titre = models.CharField(max_length=255)
+    numero = models.CharField(max_length=100, blank=True)
+    annee = models.PositiveIntegerField()
+    description = models.TextField(blank=True)
+    fichier_pdf = models.FileField(upload_to='revues/')
+    date_publication = models.DateField(null=True, blank=True)
+    actif = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-annee', '-date_publication']
+        verbose_name = "Revue"
+        verbose_name_plural = "Revues"
+
+    def __str__(self):
+        if self.numero:
+            return f"{self.titre} — {self.numero} ({self.annee})"
+        return f"{self.titre} — {self.annee}"
