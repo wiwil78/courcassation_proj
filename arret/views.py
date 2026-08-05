@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 
 from .models import TexteJuridique, Titre, Chapitre, Article
 
-from .models import Actualite
+from .models import Actualite, Revue
 
 
 
@@ -54,7 +54,13 @@ def publication(request):
     return render(request, 'publication.html', {
         'message': message
     })
+    
+def revues(request):
+    revues = Revue.objects.filter(actif=True)
 
+    return render(request, 'revues.html', {
+        'revues': revues
+    })
 
 
 
@@ -212,3 +218,5 @@ def organisation(request):
 
 def procedure(request):
     return render(request, 'procedure.html')
+
+  

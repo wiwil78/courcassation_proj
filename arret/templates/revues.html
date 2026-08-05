@@ -1,0 +1,558 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Revues — Cour de Cassation de la République d’Haïti{% endblock %}
+
+{% block extra_css %}
+<style>
+
+/* ================= HERO ================= */
+
+.revue-hero {
+    position: relative;
+    min-height: 45vh;
+    background: url("{% static 'images/cassation2.png' %}") center/cover no-repeat;
+    animation: revueWave 4s infinite ease-in-out;
+    overflow: hidden;
+}
+
+@keyframes revueWave {
+    0% { background-position: center 0; }
+    50% { background-position: center 15px; }
+    100% { background-position: center 0; }
+}
+
+.revue-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,38,84,0.78),
+        rgba(0,38,84,0.48)
+    );
+}
+
+.revue-hero-content {
+    position: relative;
+    z-index: 2;
+    min-height: 45vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.revue-label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 14px;
+}
+
+.revue-hero h1 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    font-size: 2.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.revue-hero p {
+    max-width: 760px;
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.94);
+}
+
+
+/* ================= INTRODUCTION ================= */
+
+.revue-intro {
+    max-width: 850px;
+    margin: 65px auto 45px;
+    text-align: center;
+}
+
+.revue-intro h2 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    color: #002654;
+    font-size: 1.85rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.revue-intro h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    background: #ED2939;
+    margin: 18px auto 0;
+}
+
+.revue-intro p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 20px auto 0;
+}
+
+
+/* ================= TITRE SECTION ================= */
+
+.revue-section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #002654;
+    border-left: 5px solid #ED2939;
+    padding-left: 14px;
+    margin-bottom: 30px;
+}
+
+
+/* ================= GRID ================= */
+
+.revue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+
+/* ================= CARD ================= */
+
+.revue-card {
+    position: relative;
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+    border: 1px solid rgba(0,38,84,0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    overflow: hidden;
+}
+
+.revue-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: linear-gradient(
+        90deg,
+        #002654,
+        #ED2939
+    );
+}
+
+.revue-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.13);
+}
+
+
+/* ================= CARD HEADER ================= */
+
+.revue-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.revue-card h3 {
+    font-family: "Libre Baskerville", "Times New Roman", serif;
+    color: #002654;
+    font-size: 1.25rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.revue-year {
+    flex-shrink: 0;
+
+    background: rgba(0,38,84,0.07);
+    color: #002654;
+
+    font-weight: 800;
+
+    padding: 7px 12px;
+    border-radius: 7px;
+
+    font-size: 0.85rem;
+}
+
+
+/* ================= NUMERO ================= */
+
+.revue-number {
+    color: #ED2939;
+    font-size: 0.82rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+
+/* ================= DESCRIPTION ================= */
+
+.revue-description {
+    color: #666;
+    font-size: 0.96rem;
+    line-height: 1.75;
+    margin-bottom: 25px;
+}
+
+
+/* ================= DATE ================= */
+
+.revue-date {
+    color: #888;
+    font-size: 0.83rem;
+    margin-bottom: 22px;
+}
+
+
+/* ================= PDF BUTTON ================= */
+
+.revue-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        90deg,
+        #002654,
+        #0b4fa3
+    );
+
+    color: #fff;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 7px 18px rgba(0,38,84,0.16);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.revue-btn:hover {
+    color: #fff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 24px rgba(0,38,84,0.24);
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+.revue-empty {
+    background: #fff;
+    border-radius: 18px;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+
+    border: 1px solid rgba(0,38,84,0.06);
+}
+
+.revue-empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.revue-empty h3 {
+    color: #002654;
+
+    font-family:
+        "Libre Baskerville",
+        "Times New Roman",
+        serif;
+
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.revue-empty p {
+    color: #777;
+    margin: 0;
+}
+
+
+/* ================= CLOSING ================= */
+
+.revue-closing {
+    max-width: 800px;
+
+    margin: 70px auto 65px;
+
+    text-align: center;
+
+    padding: 35px 25px;
+
+    border-top: 1px solid rgba(0,38,84,0.10);
+}
+
+.revue-closing p {
+    color: #666;
+
+    font-family:
+        "Libre Baskerville",
+        "Times New Roman",
+        serif;
+
+    font-size: 1rem;
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .revue-hero,
+    .revue-hero-content {
+        min-height: 42vh;
+    }
+
+    .revue-hero h1 {
+        font-size: 2rem;
+    }
+
+    .revue-hero p {
+        font-size: 0.95rem;
+    }
+
+    .revue-intro {
+        margin-top: 45px;
+    }
+
+    .revue-intro h2 {
+        font-size: 1.5rem;
+    }
+
+    .revue-card {
+        padding: 25px;
+    }
+
+    .revue-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .revue-year {
+        align-self: flex-start;
+    }
+
+    .revue-btn {
+        width: 100%;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="revue-hero">
+
+    <div class="revue-hero-overlay"></div>
+
+    <div class="revue-hero-content container">
+
+        <div class="revue-label">
+            Publications juridiques
+        </div>
+
+        <h1>
+            Revues de la Cour de Cassation
+        </h1>
+
+        <p>
+            Retrouvez les publications consacrées à la réflexion,
+            à l’analyse et à l’évolution du droit au sein de la
+            Cour de Cassation de la République d’Haïti.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTRODUCTION ================= -->
+
+<section class="container">
+
+    <div class="revue-intro">
+
+        <h2>
+            Une publication au service de la réflexion juridique
+        </h2>
+
+        <p>
+            La Revue de la Cour de Cassation constitue un espace
+            consacré à la diffusion des analyses, études et réflexions
+            juridiques contribuant à la compréhension et au développement
+            de la pensée juridique haïtienne.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PUBLICATIONS ================= -->
+
+<section class="container my-5">
+
+    <h2 class="revue-section-title">
+        Nos publications
+    </h2>
+
+    {% if revues %}
+
+        <div class="revue-grid">
+
+            {% for revue in revues %}
+
+                <article class="revue-card">
+
+                    <div class="revue-number">
+
+                        {% if revue.numero %}
+                            Revue {{ revue.numero }}
+                        {% else %}
+                            Revue de la Cour
+                        {% endif %}
+
+                    </div>
+
+                    <div class="revue-card-header">
+
+                        <h3>
+                            {{ revue.titre }}
+                        </h3>
+
+                        <span class="revue-year">
+                            {{ revue.annee }}
+                        </span>
+
+                    </div>
+
+                    {% if revue.description %}
+
+                        <p class="revue-description">
+                            {{ revue.description }}
+                        </p>
+
+                    {% endif %}
+
+                    {% if revue.date_publication %}
+
+                        <div class="revue-date">
+                            Publiée le
+                            {{ revue.date_publication|date:"d/m/Y" }}
+                        </div>
+
+                    {% endif %}
+
+                    {% if revue.fichier_pdf %}
+
+                        <a
+                            href="{{ revue.fichier_pdf.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="revue-btn"
+                        >
+                            <span>📄</span>
+                            <span>Consulter la revue</span>
+                        </a>
+
+                    {% endif %}
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="revue-empty">
+
+            <div class="revue-empty-icon">
+                📚
+            </div>
+
+            <h3>
+                Aucune revue disponible
+            </h3>
+
+            <p>
+                Les publications de la Cour seront disponibles
+                prochainement dans cette rubrique.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+
+<!-- ================= MESSAGE FINAL ================= -->
+
+<section class="container">
+
+    <div class="revue-closing">
+
+        <p>
+            La Cour de Cassation œuvre à la valorisation de la
+            connaissance juridique et à la diffusion d’une
+            réflexion au service de la justice et de l’État de droit.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
