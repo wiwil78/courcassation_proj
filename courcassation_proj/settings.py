@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
     "courdecassation.ht",
     "www.courdecassation.ht",
     ".onrender.com",   # ENPÒTAN
-]git add .
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://courdecassation.ht",
