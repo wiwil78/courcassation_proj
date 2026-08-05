@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
     "courdecassation.ht",
     "www.courdecassation.ht",
     ".onrender.com",   # ENPÒTAN
-]
+]git add .
 
 CSRF_TRUSTED_ORIGINS = [
     "https://courdecassation.ht",
@@ -151,6 +151,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
