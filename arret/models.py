@@ -187,7 +187,11 @@ class Revue(models.Model):
     numero = models.CharField(max_length=100, blank=True)
     annee = models.PositiveIntegerField()
     description = models.TextField(blank=True)
-    fichier_pdf = models.FileField(upload_to='revues/')
+    fichier_pdf = models.FileField(
+        upload_to='revues/',
+        blank=True,
+        null=True
+    )
     date_publication = models.DateField(null=True, blank=True)
     actif = models.BooleanField(default=True)
 
