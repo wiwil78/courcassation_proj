@@ -51,8 +51,15 @@ def publication(request):
                 Abonne.objects.create(email=email)
                 message = "Merci pour votre abonnement à la lettre d’information."
 
+    # Récupérer les revues actives
+    revues = Revue.objects.filter(actif=True).order_by(
+        '-annee',
+        '-date_publication'
+    )
+
     return render(request, 'publication.html', {
-        'message': message
+        'message': message,
+        'revues': revues,
     })
     
 def revues(request):
