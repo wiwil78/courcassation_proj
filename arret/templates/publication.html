@@ -1,3 +1,4 @@
+```html
 {% extends 'base.html' %}
 {% load static %}
 
@@ -104,33 +105,6 @@
 
 
 /* =========================================================
-   CTA
-========================================================= */
-
-.publication-cta {
-    text-align: center;
-    margin: 45px 0;
-}
-
-.publication-cta a {
-    display: inline-block;
-    padding: 14px 34px;
-    border-radius: 40px;
-    font-weight: 700;
-    background: linear-gradient(90deg, #002654, #0b4fa3);
-    color: #fff;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    transition: all 0.3s ease;
-}
-
-.publication-cta a:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.25);
-}
-
-
-/* =========================================================
    PUBLICATION GRID
 ========================================================= */
 
@@ -180,7 +154,7 @@
 
 
 /* =========================================================
-   REVUES — NOUVEAU STYLE
+   REVUES
 ========================================================= */
 
 .revue-card {
@@ -255,37 +229,249 @@
     margin-bottom: 20px;
 }
 
+
+/* =========================================================
+   BOUTON CONSULTATION
+========================================================= */
+
 .revue-button {
-    display: inline-flex !important;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+
     padding: 10px 18px;
+
+    border: none;
     border-radius: 8px;
+
     background: #002654;
-    color: #fff !important;
+    color: #fff;
+
     font-size: 0.9rem;
-    font-weight: 700 !important;
-    text-decoration: none !important;
+    font-weight: 700;
+
+    cursor: pointer;
+
     transition: all 0.25s ease;
 }
 
 .revue-button:hover {
     background: #ED2939;
-    color: #fff !important;
     transform: translateY(-2px);
-    text-decoration: none !important;
 }
+
+.revue-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+/* =========================================================
+   PDF VIEWER
+========================================================= */
+
+.revue-viewer-wrapper {
+    display: none;
+
+    margin-top: 25px;
+
+    background: #20252b;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,0.20);
+}
+
+
+/* HEADER DU VIEWER */
+
+.revue-viewer-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 18px;
+
+    background: #002654;
+
+    color: #fff;
+}
+
+.revue-viewer-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+
+/* FERMER */
+
+.revue-viewer-close {
+    border: none;
+
+    background: rgba(255,255,255,0.12);
+
+    color: #fff;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+}
+
+.revue-viewer-close:hover {
+    background: #ED2939;
+}
+
+
+/* =========================================================
+   PDF CONTROLS
+========================================================= */
+
+.pdf-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #161a1f;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.pdf-control-btn {
+    border: none;
+
+    background: #fff;
+
+    color: #002654;
+
+    border-radius: 6px;
+
+    padding: 7px 12px;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.pdf-control-btn:hover {
+    background: #ED2939;
+    color: #fff;
+}
+
+.pdf-page-info {
+    color: #fff;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    padding: 0 8px;
+}
+
+
+/* =========================================================
+   PDF CANVAS
+========================================================= */
+
+.pdf-canvas-container {
+    width: 100%;
+
+    height: 760px;
+
+    overflow: auto;
+
+    background: #525659;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 25px;
+}
+
+.pdf-canvas {
+    display: block;
+
+    background: #fff;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+
+    max-width: none;
+}
+
+
+/* MESSAGE D'ERREUR */
+
+.pdf-error {
+    display: none;
+
+    color: #fff;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    line-height: 1.7;
+}
+
+
+/* NOTE */
+
+.consultation-note {
+    padding: 10px 15px;
+
+    background: #161a1f;
+
+    color: rgba(255,255,255,0.65);
+
+    text-align: center;
+
+    font-size: 0.76rem;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .revue-empty {
     background: #f8f9fa;
+
     border: 1px dashed #cfd5dc;
+
     border-radius: 16px;
+
     padding: 35px;
+
     text-align: center;
 }
 
 .revue-empty h5 {
     color: #002654;
+
     margin-bottom: 10px;
 }
 
@@ -295,57 +481,56 @@
 
 
 /* =========================================================
-   NEWSLETTER
-========================================================= */
-
-.newsletter-box {
-    background: linear-gradient(135deg, #002654, #0b4fa3);
-    color: #fff;
-    border-radius: 18px;
-    padding: 45px;
-    text-align: center;
-}
-
-.newsletter-box input {
-    border-radius: 10px;
-}
-
-
-/* =========================================================
-   FACEBOOK ACTUALITÉS
+   FACEBOOK
 ========================================================= */
 
 .facebook-news {
     position: relative;
+
     overflow: hidden;
+
     background: linear-gradient(
         135deg,
         #002654 0%,
         #073b78 100%
     );
+
     border-radius: 18px;
+
     padding: 38px 42px;
+
     color: #fff;
+
     box-shadow: 0 10px 28px rgba(0, 38, 84, 0.14);
 }
 
 .facebook-news::before {
     content: "";
+
     position: absolute;
+
     width: 180px;
     height: 180px;
+
     border: 1px solid rgba(255,255,255,0.10);
+
     border-radius: 50%;
+
     right: -60px;
     top: -70px;
 }
 
 .facebook-news-content {
     position: relative;
+
     z-index: 2;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 35px;
 }
 
@@ -355,51 +540,101 @@
 
 .facebook-label {
     display: inline-block;
+
     font-size: 0.75rem;
+
     font-weight: 800;
+
     letter-spacing: 2px;
+
     color: rgba(255,255,255,0.75);
+
     margin-bottom: 9px;
 }
 
 .facebook-news h2 {
     font-family: "Libre Baskerville", "Times New Roman", serif;
+
     font-size: 1.7rem;
+
     font-weight: 600;
+
     margin-bottom: 12px;
 }
 
 .facebook-news p {
     margin: 0;
+
     line-height: 1.7;
+
     font-size: 0.98rem;
+
     color: rgba(255,255,255,0.90);
 }
 
 .facebook-btn {
     flex-shrink: 0;
+
     display: inline-flex;
+
     align-items: center;
+
     gap: 10px;
+
     padding: 13px 24px;
+
     border-radius: 8px;
+
     background: #fff;
+
     color: #002654;
+
     font-weight: 700;
+
     text-decoration: none;
+
     transition: all 0.25s ease;
+
     box-shadow: 0 5px 15px rgba(0,0,0,0.12);
 }
 
 .facebook-btn:hover {
     transform: translateY(-2px);
+
     box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+
     color: #002654;
 }
 
 .facebook-icon {
     font-size: 1.2rem;
+
     font-weight: 800;
+}
+
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+.newsletter-box {
+    background: linear-gradient(
+        135deg,
+        #002654,
+        #0b4fa3
+    );
+
+    color: #fff;
+
+    border-radius: 18px;
+
+    padding: 45px;
+
+    text-align: center;
+}
+
+.newsletter-box input {
+    border-radius: 10px;
 }
 
 
@@ -409,26 +644,42 @@
 
 @media (max-width: 768px) {
 
+    .publication-hero h1 {
+        font-size: 2rem;
+    }
+
     .facebook-news {
         padding: 30px 25px;
     }
 
     .facebook-news-content {
         flex-direction: column;
+
         align-items: flex-start;
     }
 
     .facebook-btn {
         width: 100%;
-        justify-content: center;
-    }
 
-    .publication-hero h1 {
-        font-size: 2rem;
+        justify-content: center;
     }
 
     .revue-card {
         padding: 23px;
+    }
+
+    .pdf-canvas-container {
+        height: 600px;
+
+        padding: 12px;
+    }
+
+    .pdf-controls {
+        gap: 5px;
+    }
+
+    .pdf-control-btn {
+        padding: 6px 9px;
     }
 
 }
@@ -461,67 +712,12 @@
 
     </div>
 
-
-    <script>
-
-        const textPublication = "Publications officielles";
-
-        let i = 0;
-
-        const speedPub = 110;
-
-        const elPub = document.getElementById("typing-publication");
-
-
-        function typePublication() {
-
-            if (i < textPublication.length) {
-
-                elPub.textContent += textPublication.charAt(i);
-
-                i++;
-
-                setTimeout(typePublication, speedPub);
-
-            } else {
-
-                elPub.style.borderRight = "none";
-
-            }
-
-        }
-
-
-        window.addEventListener("load", typePublication);
-
-    </script>
-
 </section>
 
 
 
 <!-- =========================================================
-     CTA
-========================================================= -->
-
-<!--
-<section class="publication-cta">
-
-    <a href="{% url 'consulter_arret' %}">
-        Consulter
-    </a>
-
-    <a href="#">
-        Accéder aux publications
-    </a>
-
-</section>
--->
-
-
-
-<!-- =========================================================
-     CONSTITUTION & TEXTES
+     CONSTITUTION & TEXTES LÉGAUX
 ========================================================= -->
 
 <section class="container my-5">
@@ -531,7 +727,6 @@
     </h2>
 
     <div class="pub-grid">
-
 
         <div class="pub-card">
 
@@ -607,7 +802,6 @@
 
         </div>
 
-
     </div>
 
 </section>
@@ -623,7 +817,6 @@
     <h2 class="section-title">
         Arrêts de la Cour
     </h2>
-
 
     <div class="pub-grid">
 
@@ -660,19 +853,15 @@
         Doctrine & Revues
     </h2>
 
-
     <div class="pub-grid">
 
-
         {% for revue in revues %}
-
 
         <div class="revue-card">
 
             <span class="revue-label">
                 Publication doctrinale
             </span>
-
 
             <h5>
                 {{ revue.titre }}
@@ -683,9 +872,9 @@
 
                 {% if revue.numero %}
 
-                    <span>
-                        N° {{ revue.numero }}
-                    </span>
+                <span>
+                    N° {{ revue.numero }}
+                </span>
 
                 {% endif %}
 
@@ -697,9 +886,9 @@
 
                 {% if revue.date_publication %}
 
-                    <span>
-                        {{ revue.date_publication|date:"d/m/Y" }}
-                    </span>
+                <span>
+                    {{ revue.date_publication|date:"d/m/Y" }}
+                </span>
 
                 {% endif %}
 
@@ -708,38 +897,140 @@
 
             {% if revue.description %}
 
-                <p class="revue-description">
-                    {{ revue.description }}
-                </p>
+            <p class="revue-description">
+                {{ revue.description }}
+            </p>
 
             {% else %}
 
-                <p class="revue-description">
-                    Revue et publications doctrinales de la Cour de Cassation.
-                </p>
+            <p class="revue-description">
+                Revue et publications doctrinales de la Cour de Cassation.
+            </p>
 
             {% endif %}
 
 
             {% if revue.fichier_pdf %}
 
-                <a
-                    href="{{ revue.fichier_pdf.url }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="revue-button"
-                >
-                    📄 Consulter la revue
-                </a>
+            <button
+                type="button"
+                class="revue-button"
+                data-pdf-url="{{ revue.fichier_pdf.url }}"
+                data-revue-title="{{ revue.titre|escape }}"
+                onclick="ouvrirRevue(this)"
+            >
+                👁 Consulter la revue
+            </button>
 
             {% endif %}
 
+
+            <!-- =================================================
+                 PDF VIEWER
+            ================================================= -->
+
+            <div class="revue-viewer-wrapper">
+
+                <div class="revue-viewer-header">
+
+                    <span class="revue-viewer-title">
+                        Consultation
+                    </span>
+
+                    <button
+                        type="button"
+                        class="revue-viewer-close"
+                        onclick="fermerRevue(this)"
+                        aria-label="Fermer"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <!-- CONTROLES CONSULTATION UNIQUEMENT -->
+
+                <div class="pdf-controls">
+
+                    <button
+                        type="button"
+                        class="pdf-control-btn"
+                        onclick="pagePrecedente(this)"
+                    >
+                        ← Précédente
+                    </button>
+
+
+                    <span class="pdf-page-info">
+                        Page
+                        <span class="current-page">1</span>
+                        /
+                        <span class="total-pages">—</span>
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="pdf-control-btn"
+                        onclick="pageSuivante(this)"
+                    >
+                        Suivante →
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="pdf-control-btn"
+                        onclick="zoomMoins(this)"
+                    >
+                        −
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="pdf-control-btn"
+                        onclick="zoomPlus(this)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+
+                <!-- CANVAS PDF -->
+
+                <div
+                    class="pdf-canvas-container"
+                    oncontextmenu="return false;"
+                >
+
+                    <canvas class="pdf-canvas"></canvas>
+
+
+                    <div class="pdf-error">
+
+                        Impossible de charger cette revue.
+                        Veuillez réessayer.
+
+                    </div>
+
+                </div>
+
+
+                <div class="consultation-note">
+
+                    Consultation en ligne uniquement.
+
+                </div>
+
+            </div>
 
         </div>
 
 
         {% empty %}
-
 
         <div class="revue-empty">
 
@@ -754,9 +1045,7 @@
 
         </div>
 
-
         {% endfor %}
-
 
     </div>
 
@@ -772,9 +1061,7 @@
 
     <div class="facebook-news">
 
-
         <div class="facebook-news-content">
-
 
             <div class="facebook-news-text">
 
@@ -782,11 +1069,9 @@
                     ACTUALITÉS DE LA COUR
                 </span>
 
-
                 <h2>
                     Suivez l’actualité de la Cour de Cassation
                 </h2>
-
 
                 <p>
                     Retrouvez nos dernières informations, communications,
@@ -812,7 +1097,6 @@
                 </span>
 
             </a>
-
 
         </div>
 
@@ -870,6 +1154,526 @@
     </div>
 
 </section>
+
+
+
+<!-- =========================================================
+     PDF.JS
+     Bibliothèque utilisée uniquement pour l'affichage.
+========================================================= -->
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+</script>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   HERO TYPING
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textPublication = "Publications officielles";
+
+    let i = 0;
+
+    const speedPub = 110;
+
+    const elPub = document.getElementById("typing-publication");
+
+
+    function typePublication() {
+
+        if (!elPub) {
+            return;
+        }
+
+
+        if (i < textPublication.length) {
+
+            elPub.textContent += textPublication.charAt(i);
+
+            i++;
+
+            setTimeout(typePublication, speedPub);
+
+        } else {
+
+            elPub.style.borderRight = "none";
+
+        }
+
+    }
+
+
+    typePublication();
+
+});
+
+
+
+/* =========================================================
+   PDF.JS CONFIGURATION
+========================================================= */
+
+if (typeof pdfjsLib !== "undefined") {
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+}
+
+
+/* =========================================================
+   ÉTAT DES VIEWERS
+========================================================= */
+
+const revueViewers = new WeakMap();
+
+
+
+/* =========================================================
+   OUVRIR UNE REVUE
+========================================================= */
+
+async function ouvrirRevue(button) {
+
+    const card = button.closest(".revue-card");
+
+    if (!card) {
+        return;
+    }
+
+
+    const viewer = card.querySelector(".revue-viewer-wrapper");
+
+    const canvas = card.querySelector(".pdf-canvas");
+
+    const container = card.querySelector(".pdf-canvas-container");
+
+    const errorBox = card.querySelector(".pdf-error");
+
+    const totalPages = card.querySelector(".total-pages");
+
+    const currentPage = card.querySelector(".current-page");
+
+
+    if (!viewer || !canvas || !container) {
+        return;
+    }
+
+
+    const url = button.dataset.pdfUrl;
+
+    const title = button.dataset.revueTitle || "Revue";
+
+
+    button.disabled = true;
+
+    button.innerHTML = "⏳ Chargement...";
+
+
+    /* Fermer les autres viewers */
+
+    document.querySelectorAll(".revue-viewer-wrapper").forEach(function (item) {
+
+        if (item !== viewer) {
+
+            item.style.display = "none";
+
+        }
+
+    });
+
+
+    viewer.style.display = "block";
+
+
+    try {
+
+        if (typeof pdfjsLib === "undefined") {
+
+            throw new Error("PDF.js non chargé.");
+
+        }
+
+
+        /*
+            Chargement du PDF.
+        */
+
+        const loadingTask = pdfjsLib.getDocument({
+            url: url,
+            disableAutoFetch: false,
+            disableStream: false
+        });
+
+
+        const pdf = await loadingTask.promise;
+
+
+        /*
+            Sauvegarde de l'état du viewer.
+        */
+
+        revueViewers.set(viewer, {
+
+            pdf: pdf,
+
+            currentPage: 1,
+
+            scale: 1.15,
+
+            canvas: canvas,
+
+            container: container,
+
+            currentPageElement: currentPage,
+
+            totalPagesElement: totalPages
+
+        });
+
+
+        totalPages.textContent = pdf.numPages;
+
+
+        viewer.querySelector(".revue-viewer-title").textContent =
+            "Consultation — " + title;
+
+
+        errorBox.style.display = "none";
+
+
+        await afficherPage(viewer, 1);
+
+
+        /*
+            Positionner le viewer.
+        */
+
+        setTimeout(function () {
+
+            viewer.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }, 100);
+
+
+    } catch (error) {
+
+        console.error("Erreur PDF :", error);
+
+        errorBox.style.display = "block";
+
+    }
+
+
+    button.disabled = false;
+
+    button.innerHTML = "👁 Consulter la revue";
+
+}
+
+
+
+/* =========================================================
+   AFFICHER UNE PAGE
+========================================================= */
+
+async function afficherPage(viewer, pageNumber) {
+
+    const state = revueViewers.get(viewer);
+
+    if (!state) {
+        return;
+    }
+
+
+    if (
+        pageNumber < 1 ||
+        pageNumber > state.pdf.numPages
+    ) {
+
+        return;
+
+    }
+
+
+    state.currentPage = pageNumber;
+
+
+    state.currentPageElement.textContent = pageNumber;
+
+
+    const page = await state.pdf.getPage(pageNumber);
+
+
+    const viewport = page.getViewport({
+        scale: state.scale
+    });
+
+
+    const canvas = state.canvas;
+
+    const context = canvas.getContext("2d");
+
+
+    canvas.width = viewport.width;
+
+    canvas.height = viewport.height;
+
+
+    canvas.style.width = viewport.width + "px";
+
+    canvas.style.height = viewport.height + "px";
+
+
+    await page.render({
+
+        canvasContext: context,
+
+        viewport: viewport
+
+    }).promise;
+
+}
+
+
+
+/* =========================================================
+   PAGE PRÉCÉDENTE
+========================================================= */
+
+function pagePrecedente(button) {
+
+    const viewer = button.closest(".revue-viewer-wrapper");
+
+    const state = revueViewers.get(viewer);
+
+    if (!state) {
+        return;
+    }
+
+
+    if (state.currentPage > 1) {
+
+        afficherPage(
+            viewer,
+            state.currentPage - 1
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PAGE SUIVANTE
+========================================================= */
+
+function pageSuivante(button) {
+
+    const viewer = button.closest(".revue-viewer-wrapper");
+
+    const state = revueViewers.get(viewer);
+
+    if (!state) {
+        return;
+    }
+
+
+    if (state.currentPage < state.pdf.numPages) {
+
+        afficherPage(
+            viewer,
+            state.currentPage + 1
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ZOOM +
+========================================================= */
+
+function zoomPlus(button) {
+
+    const viewer = button.closest(".revue-viewer-wrapper");
+
+    const state = revueViewers.get(viewer);
+
+    if (!state) {
+        return;
+    }
+
+
+    state.scale += 0.15;
+
+
+    afficherPage(
+        viewer,
+        state.currentPage
+    );
+
+}
+
+
+
+/* =========================================================
+   ZOOM -
+========================================================= */
+
+function zoomMoins(button) {
+
+    const viewer = button.closest(".revue-viewer-wrapper");
+
+    const state = revueViewers.get(viewer);
+
+    if (!state) {
+        return;
+    }
+
+
+    if (state.scale > 0.55) {
+
+        state.scale -= 0.15;
+
+    }
+
+
+    afficherPage(
+        viewer,
+        state.currentPage
+    );
+
+}
+
+
+
+/* =========================================================
+   FERMER LE VIEWER
+========================================================= */
+
+function fermerRevue(button) {
+
+    const viewer = button.closest(".revue-viewer-wrapper");
+
+    if (!viewer) {
+        return;
+    }
+
+
+    viewer.style.display = "none";
+
+
+    const canvas = viewer.querySelector(".pdf-canvas");
+
+    if (canvas) {
+
+        const context = canvas.getContext("2d");
+
+        context.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PROTECTION INTERFACE
+========================================================= */
+
+
+/*
+    Pas de clic droit dans le viewer.
+*/
+
+document.addEventListener("contextmenu", function (event) {
+
+    if (
+        event.target.closest(".revue-viewer-wrapper") ||
+        event.target.closest(".pdf-canvas-container")
+    ) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+
+/*
+    Bloquer quelques raccourcis courants
+    lorsque le viewer est ouvert.
+
+    Cela ne constitue pas une protection absolue.
+*/
+
+document.addEventListener("keydown", function (event) {
+
+    const viewerOuvert =
+        document.querySelector(
+            ".revue-viewer-wrapper[style*='display: block']"
+        );
+
+
+    if (!viewerOuvert) {
+        return;
+    }
+
+
+    /*
+        Ctrl + P / Cmd + P
+        Impression
+    */
+
+    if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "p"
+    ) {
+
+        event.preventDefault();
+
+    }
+
+
+    /*
+        Ctrl + S / Cmd + S
+        Sauvegarde navigateur
+    */
+
+    if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "s"
+    ) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+
+</script>
 
 
 {% endblock %}
